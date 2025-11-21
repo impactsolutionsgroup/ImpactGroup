@@ -1,0 +1,10 @@
+if (n.includes("kpi") || n.includes("health_of_the_business")) return "kpi";
+if (n.includes("adp") || n.includes("hr")) return "hr";
+
+// 🔥 PRIORITIZE academic above data
+if (n.includes("academic")) return "academic";
+
+// Data governance (Pearl + other data docs)
+if (n.includes("pearl") || n.includes("data")) return "data";
+
+return "governance";
