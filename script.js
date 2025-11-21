@@ -230,67 +230,6 @@ function initContactForm() {
  });
 }
 
-        // Show loading state
-        submitBtn.disabled = true;
-        submitBtn.classList.add('loading');
-
-        try {
-            // Simulate form submission (replace with actual API call)
-            await simulateFormSubmission(formData);
-
-            // Success
-            showFormMessage('Thank you for your message! We\'ll get back to you within 24 hours.', 'success');
-            form.reset();
-
-            // Log to console for demonstration
-            console.log('Form submitted:', formData);
-            console.log('In production, this would send to:', 'mrwallace672@gmail.com');
-
-        } catch (error) {
-            showFormMessage('Something went wrong. Please try emailing us directly at mrwallace672@gmail.com', 'error');
-            console.error('Form submission error:', error);
-        } finally {
-            submitBtn.disabled = false;
-            submitBtn.classList.remove('loading');
-        }
-    });
-
-    function showFormMessage(message, type) {
-        formMessage.textContent = message;
-        formMessage.className = `form-message ${type}`;
-        
-        // Scroll to message
-        formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-
-        // Auto-hide after 5 seconds
-        setTimeout(() => {
-            formMessage.className = 'form-message';
-        }, 5000);
-    }
-
-    function simulateFormSubmission(data) {
-        return new Promise((resolve) => {
-            // Simulate network delay
-            setTimeout(() => {
-                // In production, replace this with actual fetch/axios call:
-                /*
-                fetch('YOUR_API_ENDPOINT', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
-                })
-                .then(response => response.json())
-                .then(data => resolve(data))
-                .catch(error => reject(error));
-                */
-                resolve({ success: true });
-            }, 1500);
-        });
-    }
-}
-
 // === STATS COUNTER ANIMATION ===
 function animateCounter(element, target, duration = 2000) {
     const start = 0;
