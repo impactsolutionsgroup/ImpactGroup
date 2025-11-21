@@ -178,41 +178,57 @@ function initDashboardAnimation() {
     });
 }
 
-// === CONTACT FORM ===
+// === CONTACT FORM (Google Forms Integration) ===
 function initContactForm() {
-    const form = document.getElementById('contactForm');
-    const formMessage = document.getElementById('formMessage');
+ const form = document.getElementById('contactForm');
+ const formMessage = document.getElementById('formMessage');
 
-    if (!form) return;
+ if (!form) return;
 
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
+ form.addEventListener('submit', async (e) => {
+ e.preventDefault();
 
-        const submitBtn = form.querySelector('button[type="submit"]');
-        const btnText = submitBtn.querySelector('.btn-text');
-        const btnLoader = submitBtn.querySelector('.btn-loader');
+ const submitBtn = form.querySelector('button[type="submit"]');
 
-        // Get form data
-        const formData = {
-            name: form.name.value,
-            email: form.email.value,
-            organization: form.organization.value,
-            service: form.service.value,
-            message: form.message.value
-        };
+ // Build FormData for Google Forms
+ const formData = new FormData();
+ formData.append("entry.553120554", form.fullName.value); // Full Name
+ formData.append("entry.1092396964", form.email.value); // Email Address
+ formData.append("entry.628181211", form.organization.value); // Organization
+ formData.append("entry.291598409", form.service.value); // Service
+ formData.append("entry.72622795", form.projectDetails.value); // Project details
 
-        // Validate
-        if (!formData.name || !formData.email || !formData.message || !formData.service) {
-            showFormMessage('Please fill in all required fields.', 'error');
-            return;
-        }
+ // Google Form submission endpoint
+ const googleFormURL =
+ "https://docs.google.com/forms/d/e/1FAIpQLSc5Jx0eY2UB9AdE51GSt1-UZJbR9vgR41di2gdTgluBSDq6QA/formResponse";
 
-        // Email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(formData.email)) {
-            showFormMessage('Please enter a valid email address.', 'error');
-            return;
-        }
+ // Disable button during send
+ submitBtn.disabled = true;
+
+ try {
+ await fetch(googleFormURL, {
+ method: "POST",
+ mode: "no-cors",
+ body: formData
+ });
+
+ // Success feedback
+ formMessage.textContent = "Thank you! Your message has been sent.";
+ formMessage.className = "form-message success";
+
+ form.reset();
+
+ } catch (error) {
+ console.error("Form submission error:", error);
+ formMessage.textContent =
+ "Something went wrong. Please email us directly at impactsolutionsgroup25@gmail.com.";
+ formMessage.className = "form-message error";
+ }
+
+ // Re-enable button
+ submitBtn.disabled = false;
+ });
+}
 
         // Show loading state
         submitBtn.disabled = true;
