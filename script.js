@@ -233,28 +233,58 @@ function initContactForm() {
  });
 }
 
-// Animate stats when they come into view
+// === STATS COUNTER ANIMATION (CLEANED & UPGRADED) ===
+
+// Animate number from 0 to target
+function animateCounter(element, target, duration = 2000) {
+ let start = 0;
+ const increment = target / (duration / 16);
+
+ const timer = setInterval(() => {
+ start += increment;
+
+ if (start >= target) {
+ element.textContent = formatStatNumber(target);
+ clearInterval(timer);
+ } else {
+ element.textContent = formatStatNumber(Math.floor(start));
+ }
+ }, 16);
+}
+
+// Formats numbers back into readable strings
+function formatStatNumber(num) {
+ if (num >= 1000000) return `$${(num / 1000000).toFixed(1)}M+`;
+ if (num >= 1000) return `${num.toLocaleString()}+`;
+ return num.toString();
+}
+
+// Observer triggers animation when stats scroll into view
 const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const statNumber = entry.target;
-            const targetValue = statNumber.getAttribute('data-value');
-            
-            if (targetValue && !statNumber.classList.contains('animated')) {
-                animateCounter(statNumber, parseInt(targetValue));
-                statNumber.classList.add('animated');
-            }
-        }
-    });
+ entries.forEach(entry => {
+ if (entry.isIntersecting) {
+ const statNumber = entry.target;
+ const targetValue = Number(statNumber.getAttribute('data-value'));
+
+ if (targetValue && !statNumber.classList.contains('animated')) {
+ animateCounter(statNumber, targetValue);
+ statNumber.classList.add('animated');
+ }
+ }
+ });
 }, { threshold: 0.5 });
 
+// Initialize all stats
 document.querySelectorAll('.stat-number').forEach(stat => {
-    // Store original value
-    const value = stat.textContent.replace(/[^0-9]/g, '');
-    stat.setAttribute('data-value', value);
-    stat.textContent = '0';
-    
-    statsObserver.observe(stat);
+ const targetValue = stat.getAttribute('data-value');
+
+ if (!targetValue) return;
+
+ // Start numbers visually at 0
+ stat.textContent = '0';
+
+ // Start observing
+ statsObserver.observe(stat);
 });
 
 // === PARALLAX EFFECTS ===
