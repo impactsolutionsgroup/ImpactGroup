@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://impactsolutionsgroup.github.io/ImpactGroup/sitemap.xml
