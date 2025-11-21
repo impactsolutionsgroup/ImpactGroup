@@ -180,7 +180,7 @@ function initDashboardAnimation() {
 
 // === CONTACT FORM (Google Forms Integration) ===
 function initContactForm() {
- const form = document.getElementById('contactForm');
+ const form = document.querySelector('form'); // auto-detects your form
  const formMessage = document.getElementById('formMessage');
 
  if (!form) return;
@@ -190,19 +190,24 @@ function initContactForm() {
 
  const submitBtn = form.querySelector('button[type="submit"]');
 
+ // Get fields SAFELY to avoid JS errors
+ const fullName = form.querySelector('[name="fullName"], [name="name"]');
+ const email = form.querySelector('[name="email"]');
+ const organization = form.querySelector('[name="organization"]');
+ const service = form.querySelector('[name="service"]');
+ const details = form.querySelector('[name="projectDetails"], [name="message"]');
+
  // Build FormData for Google Forms
  const formData = new FormData();
- formData.append("entry.553120554", form.fullName.value); // Full Name
- formData.append("entry.1092396964", form.email.value); // Email Address
- formData.append("entry.628181211", form.organization.value); // Organization
- formData.append("entry.291598409", form.service.value); // Service
- formData.append("entry.72622795", form.projectDetails.value); // Project details
+ formData.append("entry.553120554", fullName ? fullName.value : "");
+ formData.append("entry.1092396964", email ? email.value : "");
+ formData.append("entry.628181211", organization ? organization.value : "");
+ formData.append("entry.291598409", service ? service.value : "");
+ formData.append("entry.72622795", details ? details.value : "");
 
- // Google Form submission endpoint
  const googleFormURL =
  "https://docs.google.com/forms/d/e/1FAIpQLSc5Jx0eY2UB9AdE51GSt1-UZJbR9vgR41di2gdTgluBSDq6QA/formResponse";
 
- // Disable button during send
  submitBtn.disabled = true;
 
  try {
@@ -212,7 +217,6 @@ function initContactForm() {
  body: formData
  });
 
- // Success feedback
  formMessage.textContent = "Thank you! Your message has been sent.";
  formMessage.className = "form-message success";
 
@@ -225,35 +229,8 @@ function initContactForm() {
  formMessage.className = "form-message error";
  }
 
- // Re-enable button
  submitBtn.disabled = false;
  });
-}
-
-// === STATS COUNTER ANIMATION ===
-function animateCounter(element, target, duration = 2000) {
-    const start = 0;
-    const increment = target / (duration / 16);
-    let current = start;
-
-    const timer = setInterval(() => {
-        current += increment;
-        if (current >= target) {
-            element.textContent = formatStatNumber(target);
-            clearInterval(timer);
-        } else {
-            element.textContent = formatStatNumber(Math.floor(current));
-        }
-    }, 16);
-}
-
-function formatStatNumber(num) {
-    if (num >= 1000000) {
-        return (num / 1000000).toFixed(1) + 'M';
-    } else if (num >= 1000) {
-        return (num / 1000).toFixed(1) + 'K';
-    }
-    return num.toString();
 }
 
 // Animate stats when they come into view
