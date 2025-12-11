@@ -8,9 +8,115 @@ document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
     initScrollAnimations();
     initContactForm();
+    initImpactOSModal();
     initSmoothScroll();
     initDashboardAnimation();
 });
+
+// === IMPACTOS MODAL ===
+function initImpactOSModal() {
+    const modal = document.getElementById('impactosModal');
+    
+    if (!modal) return;
+    
+    // Close modal on ESC key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.style.display === 'flex') {
+            closeImpactOSDemo();
+        }
+    });
+    
+    // Close on backdrop click
+    modal.addEventListener('click', (e) => {
+        if (e.target.id === 'impactosModal') {
+            closeImpactOSDemo();
+        }
+    });
+    
+    // Handle demo form submission
+    const demoForm = document.getElementById('impactosForm');
+    if (demoForm) {
+        demoForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const form = e.target;
+            const formMessage = document.getElementById('impactosFormMessage');
+            const submitBtn = form.querySelector('button[type="submit"]');
+            
+            // Build FormData for Google Forms
+            const formData = new FormData();
+            formData.append("entry.553120554", form.querySelector('[name="name"]').value);
+            formData.append("entry.1092396964", form.querySelector('[name="email"]').value);
+            formData.append("entry.628181211", form.querySelector('[name="organization"]').value);
+            formData.append("entry.291598409", form.querySelector('[name="role"]').value);
+            formData.append("entry.72622795", form.querySelector('[name="needs"]').value || "ImpactOS Demo Request");
+            
+            const googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSc5Jx0eY2UB9AdE51GSt1-UZJbR9vgR41di2gdTgluBSDq6QA/formResponse";
+            
+            submitBtn.disabled = true;
+            submitBtn.classList.add('loading');
+            
+            try {
+                await fetch(googleFormURL, {
+                    method: "POST",
+                    mode: "no-cors",
+                    body: formData
+                });
+                
+                formMessage.textContent = "Thank you! We'll be in touch within 24 hours to schedule your ImpactOS demo.";
+                formMessage.className = "form-message success";
+                
+                form.reset();
+                
+                setTimeout(() => {
+                    closeImpactOSDemo();
+                    formMessage.textContent = "";
+                    formMessage.className = "form-message";
+                }, 3000);
+            } catch (error) {
+                console.error("Demo form submission error:", error);
+                formMessage.textContent = "Please email us directly at impactsolutionsgroup25@gmail.com to request a demo.";
+                formMessage.className = "form-message error";
+            }
+            
+            submitBtn.disabled = false;
+            submitBtn.classList.remove('loading');
+        });
+    }
+}
+
+// Open ImpactOS modal
+function openImpactOSDemo() {
+    const modal = document.getElementById('impactosModal');
+    if (modal) {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        // Focus first input
+        const firstInput = modal.querySelector('input');
+        if (firstInput) {
+            setTimeout(() => firstInput.focus(), 100);
+        }
+    }
+}
+
+// Close ImpactOS modal
+function closeImpactOSDemo() {
+    const modal = document.getElementById('impactosModal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        
+        // Clear form and message
+        const form = document.getElementById('impactosForm');
+        const formMessage = document.getElementById('impactosFormMessage');
+        if (form) form.reset();
+        if (formMessage) {
+            formMessage.textContent = "";
+            formMessage.className = "form-message";
+        }
+    }
+}
 
 // === NAVIGATION ===
 function initNavigation() {
@@ -180,111 +286,112 @@ function initDashboardAnimation() {
 
 // === CONTACT FORM (Google Forms Integration) ===
 function initContactForm() {
- const form = document.querySelector('form'); // auto-detects your form
- const formMessage = document.getElementById('formMessage');
+    const form = document.getElementById('contactForm');
+    const formMessage = document.getElementById('formMessage');
 
- if (!form) return;
+    if (!form) return;
 
- form.addEventListener('submit', async (e) => {
- e.preventDefault();
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
- const submitBtn = form.querySelector('button[type="submit"]');
+        const submitBtn = form.querySelector('button[type="submit"]');
 
- // Get fields SAFELY to avoid JS errors
- const fullName = form.querySelector('[name="fullName"], [name="name"]');
- const email = form.querySelector('[name="email"]');
- const organization = form.querySelector('[name="organization"]');
- const service = form.querySelector('[name="service"]');
- const details = form.querySelector('[name="projectDetails"], [name="message"]');
+        // Get fields SAFELY to avoid JS errors
+        const fullName = form.querySelector('[name="name"]');
+        const email = form.querySelector('[name="email"]');
+        const organization = form.querySelector('[name="organization"]');
+        const service = form.querySelector('[name="service"]');
+        const details = form.querySelector('[name="message"]');
 
- // Build FormData for Google Forms
- const formData = new FormData();
- formData.append("entry.553120554", fullName ? fullName.value : "");
- formData.append("entry.1092396964", email ? email.value : "");
- formData.append("entry.628181211", organization ? organization.value : "");
- formData.append("entry.291598409", service ? service.value : "");
- formData.append("entry.72622795", details ? details.value : "");
+        // Build FormData for Google Forms
+        const formData = new FormData();
+        formData.append("entry.553120554", fullName ? fullName.value : "");
+        formData.append("entry.1092396964", email ? email.value : "");
+        formData.append("entry.628181211", organization ? organization.value : "");
+        formData.append("entry.291598409", service ? service.value : "");
+        formData.append("entry.72622795", details ? details.value : "");
 
- const googleFormURL =
- "https://docs.google.com/forms/d/e/1FAIpQLSc5Jx0eY2UB9AdE51GSt1-UZJbR9vgR41di2gdTgluBSDq6QA/formResponse";
+        const googleFormURL = "https://docs.google.com/forms/d/e/1FAIpQLSc5Jx0eY2UB9AdE51GSt1-UZJbR9vgR41di2gdTgluBSDq6QA/formResponse";
 
- submitBtn.disabled = true;
+        submitBtn.disabled = true;
+        submitBtn.classList.add('loading');
 
- try {
- await fetch(googleFormURL, {
- method: "POST",
- mode: "no-cors",
- body: formData
- });
+        try {
+            await fetch(googleFormURL, {
+                method: "POST",
+                mode: "no-cors",
+                body: formData
+            });
 
- formMessage.textContent = "Thank you! Your message has been sent.";
- formMessage.className = "form-message success";
+            formMessage.textContent = "Thank you! Your message has been sent. We'll respond within 24 hours.";
+            formMessage.className = "form-message success";
 
- form.reset();
+            form.reset();
 
- } catch (error) {
- console.error("Form submission error:", error);
- formMessage.textContent =
- "Something went wrong. Please email us directly at impactsolutionsgroup25@gmail.com.";
- formMessage.className = "form-message error";
- }
+        } catch (error) {
+            console.error("Form submission error:", error);
+            formMessage.textContent = "Something went wrong. Please email us directly at impactsolutionsgroup25@gmail.com.";
+            formMessage.className = "form-message error";
+        }
 
- submitBtn.disabled = false;
- });
+        submitBtn.disabled = false;
+        submitBtn.classList.remove('loading');
+    });
 }
 
-// === STATS COUNTER ANIMATION (CLEANED & UPGRADED) ===
+// === STATS COUNTER ANIMATION ===
 
 // Animate number from 0 to target
 function animateCounter(element, target, duration = 2000) {
- let start = 0;
- const increment = target / (duration / 16);
+    let start = 0;
+    const increment = target / (duration / 16);
 
- const timer = setInterval(() => {
- start += increment;
+    const timer = setInterval(() => {
+        start += increment;
 
- if (start >= target) {
- element.textContent = formatStatNumber(target);
- clearInterval(timer);
- } else {
- element.textContent = formatStatNumber(Math.floor(start));
- }
- }, 16);
+        if (start >= target) {
+            element.textContent = formatStatNumber(target);
+            clearInterval(timer);
+        } else {
+            element.textContent = formatStatNumber(Math.floor(start));
+        }
+    }, 16);
 }
 
 // Formats numbers back into readable strings
 function formatStatNumber(num) {
- if (num >= 1000000) return `$${(num / 1000000).toFixed(1)}M+`;
- if (num >= 1000) return `${num.toLocaleString()}+`;
- return num.toString();
+    if (num >= 1000000) return `$${(num / 1000000).toFixed(1)}M+`;
+    if (num >= 1000) return `${num.toLocaleString()}+`;
+    if (num < 100 && num > 0) return `${num}%`;
+    return num.toString();
 }
 
 // Observer triggers animation when stats scroll into view
 const statsObserver = new IntersectionObserver((entries) => {
- entries.forEach(entry => {
- if (entry.isIntersecting) {
- const statNumber = entry.target;
- const targetValue = Number(statNumber.getAttribute('data-value'));
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const statNumber = entry.target;
+            const targetValue = Number(statNumber.getAttribute('data-value'));
 
- if (targetValue && !statNumber.classList.contains('animated')) {
- animateCounter(statNumber, targetValue);
- statNumber.classList.add('animated');
- }
- }
- });
+            if (targetValue && !statNumber.classList.contains('animated')) {
+                animateCounter(statNumber, targetValue);
+                statNumber.classList.add('animated');
+            }
+        }
+    });
 }, { threshold: 0.5 });
 
 // Initialize all stats
 document.querySelectorAll('.stat-number').forEach(stat => {
- const targetValue = stat.getAttribute('data-value');
+    const targetValue = stat.getAttribute('data-value');
 
- if (!targetValue) return;
+    if (!targetValue) return;
 
- // Start numbers visually at 0
- stat.textContent = '0';
+    // Start numbers visually at 0
+    stat.textContent = '0';
 
- // Start observing
- statsObserver.observe(stat);
+    // Start observing
+    statsObserver.observe(stat);
 });
 
 // === PARALLAX EFFECTS ===
@@ -381,7 +488,7 @@ if ('IntersectionObserver' in window) {
 // === ACCESSIBILITY ENHANCEMENTS ===
 // Skip to main content
 const skipLink = document.createElement('a');
-skipLink.href = '#services';
+skipLink.href = '#impactos';
 skipLink.textContent = 'Skip to main content';
 skipLink.className = 'skip-link';
 skipLink.style.cssText = `
@@ -431,7 +538,7 @@ function trapFocus(element) {
 console.log('%c👋 Hey there!', 'font-size: 24px; font-weight: bold; color: #0EA5E9;');
 console.log('%cImpact Solutions Group', 'font-size: 16px; color: #8B5CF6;');
 console.log('%cLooking at the code? Nice! We love data-driven professionals.', 'font-size: 14px; color: #94A3B8;');
-console.log('%cWant to work together? Contact Amir: mrwallace672@gmail.com', 'font-size: 14px; color: #10B981;');
+console.log('%cWant to work together? Contact Amir: impactsolutionsgroup25@gmail.com', 'font-size: 14px; color: #10B981;');
 
 // === EXPORT FUNCTIONS (for potential use) ===
 window.ImpactSolutions = {
@@ -451,5 +558,7 @@ window.ImpactSolutions = {
                 behavior: 'smooth'
             });
         }
-    }
+    },
+    openImpactOSDemo: openImpactOSDemo,
+    closeImpactOSDemo: closeImpactOSDemo
 };
