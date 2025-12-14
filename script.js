@@ -697,3 +697,138 @@ window.ImpactSolutions.closeWhiteLabelModal = closeWhiteLabelModal;
 // ==========================================
 // END WHITE LABELING MODAL FUNCTIONS
 // ==========================================
+
+// ==========================================
+// WHITE LABELING MODAL FUNCTIONS
+// Append to your existing script.js
+// ==========================================
+
+/**
+ * Open White Label Modal
+ */
+function openWhiteLabelModal(event) {
+    if (event) event.preventDefault();
+    
+    const modal = document.getElementById('whiteLabelModal');
+    if (modal) {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        // Animate in
+        setTimeout(() => {
+            modal.classList.add('active');
+        }, 10);
+        
+        // Focus trap for accessibility
+        const firstFocusable = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if (firstFocusable) {
+            setTimeout(() => firstFocusable.focus(), 100);
+        }
+    }
+}
+
+/**
+ * Close White Label Modal
+ */
+function closeWhiteLabelModal() {
+    const modal = document.getElementById('whiteLabelModal');
+    if (modal) {
+        modal.classList.remove('active');
+        
+        setTimeout(() => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }, 300);
+    }
+}
+
+/**
+ * Initialize White Label Modal
+ */
+function initWhiteLabelModal() {
+    const modal = document.getElementById('whiteLabelModal');
+    
+    if (!modal) return;
+    
+    // Close on ESC key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.style.display === 'flex') {
+            closeWhiteLabelModal();
+        }
+    });
+    
+    // Close on backdrop click
+    modal.addEventListener('click', (e) => {
+        if (e.target.id === 'whiteLabelModal') {
+            closeWhiteLabelModal();
+        }
+    });
+    
+    // Prevent body scroll when modal open
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.attributeName === 'style') {
+                if (modal.style.display === 'flex') {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = 'auto';
+                }
+            }
+        });
+    });
+    
+    observer.observe(modal, { attributes: true });
+}
+
+// Initialize on DOM ready
+document.addEventListener('DOMContentLoaded', () => {
+    initWhiteLabelModal();
+    initLogoAnimation(); // Call logo animation initializer
+});
+
+/**
+ * Animated Logo Enhancement
+ * Adds glow and subtle animation to existing logo
+ */
+function initLogoAnimation() {
+    const logo = document.querySelector('.logo');
+    
+    if (!logo) return;
+    
+    // Add hover glow effect
+    logo.addEventListener('mouseenter', () => {
+        const svg = logo.querySelector('svg');
+        if (svg) {
+            svg.style.filter = 'drop-shadow(0 0 16px rgba(14, 165, 233, 0.8))';
+        }
+    });
+    
+    logo.addEventListener('mouseleave', () => {
+        const svg = logo.querySelector('svg');
+        if (svg) {
+            svg.style.filter = 'drop-shadow(0 0 8px rgba(14, 165, 233, 0.4))';
+        }
+    });
+    
+    // Subtle pulse animation
+    const svg = logo.querySelector('svg rect');
+    if (svg) {
+        setInterval(() => {
+            svg.style.filter = 'brightness(1.3)';
+            setTimeout(() => {
+                svg.style.filter = 'brightness(1)';
+            }, 600);
+        }, 3000);
+    }
+}
+
+/**
+ * Export functions for global access
+ */
+window.ImpactSolutions = window.ImpactSolutions || {};
+window.ImpactSolutions.openWhiteLabelModal = openWhiteLabelModal;
+window.ImpactSolutions.closeWhiteLabelModal = closeWhiteLabelModal;
+
+// ==========================================
+// END WHITE LABELING MODAL FUNCTIONS
+// ==========================================
