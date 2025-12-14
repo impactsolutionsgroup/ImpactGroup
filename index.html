@@ -25,15 +25,69 @@
     <nav id="navbar" class="navbar">
         <div class="container nav-container">
             <a href="#home" class="logo">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="40" height="40" rx="8" fill="url(#gradient)"/>
-                    <path d="M12 20L18 26L28 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <!-- ✅ PREMIUM HEXAGONAL LOGO WITH ORBITAL NODES -->
+                <svg width="40" height="40" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <defs>
-                        <linearGradient id="gradient" x1="0" y1="0" x2="40" y2="40">
-                            <stop offset="0%" stop-color="#0EA5E9"/>
-                            <stop offset="100%" stop-color="#8B5CF6"/>
+                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#0EA5E9;stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:#2563EB;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
                         </linearGradient>
+                        <filter id="logoGlow">
+                            <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
                     </defs>
+                    
+                    <!-- Hexagonal Frame -->
+                    <path d="M60 10 L95 30 L95 70 L60 90 L25 70 L25 30 Z" 
+                          stroke="url(#logoGradient)" 
+                          stroke-width="2.5" 
+                          fill="none"
+                          class="logo-hexagon"/>
+                    
+                    <!-- Orbital Rings -->
+                    <circle cx="60" cy="50" r="20" 
+                            stroke="url(#logoGradient)" 
+                            stroke-width="0.5" 
+                            fill="none" 
+                            opacity="0.3"
+                            class="logo-orbit-ring"/>
+                    <circle cx="60" cy="50" r="15" 
+                            stroke="url(#logoGradient)" 
+                            stroke-width="0.5" 
+                            fill="none" 
+                            opacity="0.2"
+                            class="logo-orbit-ring"/>
+                    
+                    <!-- Central "I" Monogram -->
+                    <g filter="url(#logoGlow)">
+                        <path d="M56 40 L64 40 L64 60 L56 60 Z" 
+                              fill="url(#logoGradient)"
+                              class="logo-monogram"/>
+                        <circle cx="60" cy="37" r="2.5" 
+                                fill="url(#logoGradient)"
+                                class="logo-monogram"/>
+                    </g>
+                    
+                    <!-- Orbital Nodes -->
+                    <circle cx="60" cy="30" r="3" fill="#0EA5E9" class="logo-node logo-node-1"/>
+                    <circle cx="75" cy="42" r="3" fill="#2563EB" class="logo-node logo-node-2"/>
+                    <circle cx="75" cy="58" r="3" fill="#8B5CF6" class="logo-node logo-node-3"/>
+                    <circle cx="60" cy="70" r="3" fill="#0EA5E9" class="logo-node logo-node-4"/>
+                    <circle cx="45" cy="58" r="3" fill="#2563EB" class="logo-node logo-node-5"/>
+                    <circle cx="45" cy="42" r="3" fill="#8B5CF6" class="logo-node logo-node-6"/>
+                    
+                    <!-- Connecting Lines -->
+                    <line x1="60" y1="30" x2="75" y2="42" stroke="url(#logoGradient)" stroke-width="0.5" opacity="0.3" class="logo-connection"/>
+                    <line x1="75" y1="42" x2="75" y2="58" stroke="url(#logoGradient)" stroke-width="0.5" opacity="0.3" class="logo-connection"/>
+                    <line x1="75" y1="58" x2="60" y2="70" stroke="url(#logoGradient)" stroke-width="0.5" opacity="0.3" class="logo-connection"/>
+                    <line x1="60" y1="70" x2="45" y2="58" stroke="url(#logoGradient)" stroke-width="0.5" opacity="0.3" class="logo-connection"/>
+                    <line x1="45" y1="58" x2="45" y2="42" stroke="url(#logoGradient)" stroke-width="0.5" opacity="0.3" class="logo-connection"/>
+                    <line x1="45" y1="42" x2="60" y2="30" stroke="url(#logoGradient)" stroke-width="0.5" opacity="0.3" class="logo-connection"/>
                 </svg>
                 <span>Impact Solutions Group</span>
             </a>
@@ -727,15 +781,28 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect width="40" height="40" rx="8" fill="url(#footerGradient)"/>
-                        <path d="M12 20L18 26L28 14" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                    <!-- ✅ PREMIUM FOOTER LOGO -->
+                    <svg width="40" height="40" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <defs>
-                            <linearGradient id="footerGradient" x1="0" y1="0" x2="40" y2="40">
-                                <stop offset="0%" stop-color="#0EA5E9"/>
-                                <stop offset="100%" stop-color="#8B5CF6"/>
+                            <linearGradient id="footerLogoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#0EA5E9;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#2563EB;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
                             </linearGradient>
                         </defs>
+                        <path d="M60 10 L95 30 L95 70 L60 90 L25 70 L25 30 Z" 
+                              stroke="url(#footerLogoGradient)" 
+                              stroke-width="2.5" 
+                              fill="none"/>
+                        <circle cx="60" cy="50" r="20" stroke="url(#footerLogoGradient)" stroke-width="0.5" fill="none" opacity="0.3"/>
+                        <path d="M56 40 L64 40 L64 60 L56 60 Z" fill="url(#footerLogoGradient)"/>
+                        <circle cx="60" cy="37" r="2.5" fill="url(#footerLogoGradient)"/>
+                        <circle cx="60" cy="30" r="3" fill="#0EA5E9"/>
+                        <circle cx="75" cy="42" r="3" fill="#2563EB"/>
+                        <circle cx="75" cy="58" r="3" fill="#8B5CF6"/>
+                        <circle cx="60" cy="70" r="3" fill="#0EA5E9"/>
+                        <circle cx="45" cy="58" r="3" fill="#2563EB"/>
+                        <circle cx="45" cy="42" r="3" fill="#8B5CF6"/>
                     </svg>
                     <div>
                         <h3>Impact Solutions Group</h3>
