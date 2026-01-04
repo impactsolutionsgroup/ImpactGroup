@@ -5,14 +5,14 @@
     <link rel="canonical" href="https://impactsolutionsgroup.github.io/ImpactGroup/" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Impact Solutions Group designs strategic intelligence systems for organizations that operate at scale. ImpactOS for executive decision-making, ClassroomOS for instructional environments.">
+    <meta name="description" content="Impact Solutions Group builds strategic intelligence infrastructure. ImpactOS for executive teams. ClassroomOS for instructional environments.">
     <title>Impact Solutions Group | Strategic Intelligence Infrastructure</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="style-complete.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 </head>
 <body>
@@ -20,6 +20,25 @@
     <nav id="navbar" class="navbar">
         <div class="container nav-container">
             <a href="#home" class="logo">
+                <svg width="40" height="40" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#0EA5E9;stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:#2563EB;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M60 10 L95 30 L95 70 L60 90 L25 70 L25 30 Z" stroke="url(#logoGradient)" stroke-width="2.5" fill="none" class="logo-hexagon"/>
+                    <circle cx="60" cy="50" r="20" stroke="url(#logoGradient)" stroke-width="0.5" fill="none" opacity="0.3" class="logo-orbit-ring"/>
+                    <path d="M56 40 L64 40 L64 60 L56 60 Z" fill="url(#logoGradient)" class="logo-monogram"/>
+                    <circle cx="60" cy="37" r="2.5" fill="url(#logoGradient)" class="logo-monogram"/>
+                    <circle cx="60" cy="30" r="3" fill="#0EA5E9" class="logo-node logo-node-1"/>
+                    <circle cx="75" cy="42" r="3" fill="#2563EB" class="logo-node logo-node-2"/>
+                    <circle cx="75" cy="58" r="3" fill="#8B5CF6" class="logo-node logo-node-3"/>
+                    <circle cx="60" cy="70" r="3" fill="#0EA5E9" class="logo-node logo-node-4"/>
+                    <circle cx="45" cy="58" r="3" fill="#2563EB" class="logo-node logo-node-5"/>
+                    <circle cx="45" cy="42" r="3" fill="#8B5CF6" class="logo-node logo-node-6"/>
+                </svg>
                 <span>Impact Solutions Group</span>
             </a>
             
@@ -30,464 +49,293 @@
             </button>
             
             <ul class="nav-menu">
-                <li><a href="#products" class="nav-link">Products</a></li>
+                <li><a href="#platforms" class="nav-link">Platforms</a></li>
                 <li><a href="#services" class="nav-link">Services</a></li>
-                <li><a href="#white-label" class="nav-link">White Label</a></li>
-                <li><a href="#founder" class="nav-link">About</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#contact" class="nav-link btn-primary">Partner With Us</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <section id="home" class="hero">
+        <div class="hero-background"></div>
         <div class="container hero-container">
             <div class="hero-content">
+                <div class="hero-badge">
+                    <span>Strategic Intelligence Infrastructure</span>
+                </div>
                 <h1 class="hero-title">
-                    Strategic intelligence infrastructure for organizations that operate at scale.
+                    Intelligence Systems for
+                    <span class="gradient-text">Organizations at Scale</span>
                 </h1>
                 <p class="hero-subtitle">
-                    Impact Solutions Group builds decision systems that connect strategy, execution, and operational reality — 
-                    without replacing human judgment. We deploy intelligence platforms for executive teams and instructional environments.
+                    Impact Solutions Group builds decision infrastructure that surfaces operational reality without imposing evaluation. 
+                    <strong>ImpactOS</strong> for executive teams. <strong>ClassroomOS</strong> for instructional environments.
                 </p>
                 <div class="hero-cta">
-                    <a href="#products" class="btn btn-primary btn-lg">View Products</a>
-                    <a href="#white-label" class="btn btn-secondary btn-lg">Explore Partnership</a>
+                    <a href="#platforms" class="btn btn-primary btn-lg">Explore Platforms</a>
+                    <a href="#contact" class="btn btn-secondary btn-lg">Schedule Consultation</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number" data-value="85">85%</div>
+                        <div class="stat-label">Decision Cycle Reduction</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-value="2000">2,000+</div>
+                        <div class="stat-label">Decisions Processed</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-value="20">20+</div>
+                        <div class="stat-label">Organizations</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="dashboard-preview">
+                    <div class="dashboard-header">
+                        <div class="dashboard-dots">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="dashboard-title">Intelligence Infrastructure</div>
+                    </div>
+                    <div class="dashboard-content">
+                        <div class="chart-card">
+                            <div class="chart-title">Execution Benchmarks</div>
+                            <div class="chart-bars">
+                                <div class="bar"><div class="bar-fill" style="height: 75%"></div></div>
+                                <div class="bar"><div class="bar-fill" style="height: 60%"></div></div>
+                                <div class="bar"><div class="bar-fill" style="height: 90%"></div></div>
+                                <div class="bar"><div class="bar-fill" style="height: 85%"></div></div>
+                            </div>
+                        </div>
+                        <div class="metric-cards">
+                            <div class="metric-card">
+                                <div class="metric-icon">✓</div>
+                                <div class="metric-value">Governed</div>
+                            </div>
+                            <div class="metric-card">
+                                <div class="metric-icon">⚖</div>
+                                <div class="metric-value">Auditable</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Core Capabilities -->
-    <section id="capabilities" class="pillars">
+    <!-- Firm Positioning -->
+    <section class="positioning">
         <div class="container">
-            <div class="section-header">
-                <div class="section-label">Core Capabilities</div>
-                <h2>What We Build</h2>
-            </div>
-            
-            <div class="pillars-grid">
-                <div class="pillar-card">
-                    <h3>Strategic Intelligence Design</h3>
-                    <p>
-                        We architect systems that surface operational patterns without evaluating them. Leaders see 
-                        organizational health, execution benchmarks, and strategic alignment — and retain authority 
-                        over interpretation.
-                    </p>
-                </div>
-
-                <div class="pillar-card">
-                    <h3>Operational Governance</h3>
-                    <p>
-                        Our platforms enforce structural fidelity while allowing operational flexibility. Decision 
-                        frameworks follow defined schemas. Evidence logs maintain temporal integrity. Systems ensure 
-                        completeness without constraining execution.
-                    </p>
-                </div>
-
-                <div class="pillar-card">
-                    <h3>Scalable Enablement</h3>
-                    <p>
-                        Built for organizations managing distributed operations, shifting personnel, and complex 
-                        hierarchies. Role-based interfaces preserve continuity when individuals transition. New users 
-                        inherit context, not gaps.
-                    </p>
-                </div>
-            </div>
+            <h2>Not Software. Strategic Infrastructure.</h2>
+            <p>
+                Every analysis follows codified methodologies. Decision artifacts include documented reasoning chains. 
+                Frameworks deploy under your governance—you control access, workflows, and institutional standards.
+            </p>
         </div>
     </section>
 
-    <!-- Products Section -->
-    <section id="products" class="products">
+    <!-- Platforms -->
+    <section id="platforms" class="platforms">
         <div class="container">
             <div class="section-header">
-                <div class="section-label">Products</div>
                 <h2>Intelligence Platforms</h2>
-                <p class="section-intro">
-                    Impact Solutions Group operates two strategic intelligence platforms. ImpactOS serves executive teams 
-                    making organizational decisions. ClassroomOS serves educators managing instructional environments. 
-                    Both systems share the same architectural principles: surface reality, maintain fidelity, enable judgment.
+                <p>
+                    Impact Solutions Group operates two strategic intelligence systems. Both share the same architectural 
+                    principles: surface reality, maintain fidelity, enable judgment.
                 </p>
             </div>
 
-            <!-- ImpactOS Product -->
-            <div class="product-feature">
-                <div class="product-content">
-                    <div class="product-header">
-                        <div class="product-badge">Executive Intelligence</div>
-                        <h3>ImpactOS</h3>
-                    </div>
-                    
-                    <p class="product-intro">
-                        ImpactOS is a decision operating system for executive teams. It provides structured frameworks 
-                        for strategic planning, organizational health assessment, departmental design, and execution measurement. 
-                        Leaders generate analysis within governed schemas while maintaining interpretive authority.
+            <div class="platforms-grid">
+                <!-- ImpactOS -->
+                <div class="platform-card" data-aos="fade-up">
+                    <div class="platform-badge">Executive Intelligence</div>
+                    <h3><span class="gradient-text">ImpactOS</span></h3>
+                    <p class="platform-desc">
+                        Decision operating system for executive teams. Codified frameworks for strategic planning, 
+                        organizational health assessment, and execution measurement.
                     </p>
-
-                    <div class="product-features-list">
-                        <div class="feature-item">
-                            <h4>Strategic Framework Engine</h4>
-                            <p>
-                                Generate strategic plans using codified methodologies. The system guides executives through 
-                                structured decision logic — market analysis, capability assessment, execution planning — 
-                                producing auditable outputs with documented assumptions.
-                            </p>
-                        </div>
-
-                        <div class="feature-item">
-                            <h4>Organizational Health Monitor</h4>
-                            <p>
-                                Track organizational performance against sector benchmarks. The platform surfaces financial 
-                                health, operational capacity, market positioning, and execution readiness without prescribing 
-                                corrective action.
-                            </p>
-                        </div>
-
-                        <div class="feature-item">
-                            <h4>Department Architecture Builder</h4>
-                            <p>
-                                Model organizational structures with financial projections and market-rate compensation analysis. 
-                                Design teams, forecast costs, validate capacity — all within governance-approved parameters.
-                            </p>
-                        </div>
-
-                        <div class="feature-item">
-                            <h4>Execution Capability Index</h4>
-                            <p>
-                                Measure organizational readiness across clarity, capacity, systems, and leadership domains. 
-                                The index reveals execution gaps without evaluating strategic validity.
-                            </p>
-                        </div>
+                    <ul class="platform-features">
+                        <li>Strategic Framework Engine</li>
+                        <li>Organizational Health Index</li>
+                        <li>Execution Capability System</li>
+                        <li>Department Design Module</li>
+                    </ul>
+                    <div class="platform-cta">
+                        <button onclick="openImpactOSDemo()" class="btn btn-primary">Request Demo</button>
+                        <a href="https://impactdata.pages.dev/login" target="_blank" class="btn btn-secondary">Access Platform</a>
                     </div>
+                </div>
 
-                    <div class="product-cta">
-                        <a href="https://impactdata.pages.dev/login" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-                            Access ImpactOS
-                        </a>
-                        <a href="#white-label" class="btn btn-secondary">
-                            Deploy Under Your Brand
-                        </a>
+                <!-- ClassroomOS -->
+                <div class="platform-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="platform-badge">Instructional Intelligence</div>
+                    <h3><span class="gradient-text">ClassroomOS</span></h3>
+                    <p class="platform-desc">
+                        Intelligence platform for distributed instructional environments. Enables educators to document 
+                        strategy, log evidence, and maintain operational continuity across personnel transitions.
+                    </p>
+                    <ul class="platform-features">
+                        <li>Strategy Snapshot Records</li>
+                        <li>Evidence Tracking Logs</li>
+                        <li>Role-Based Permissions</li>
+                        <li>Transition Continuity</li>
+                    </ul>
+                    <div class="platform-cta">
+                        <button onclick="openClassroomOSDemo()" class="btn btn-primary">Request Demo</button>
+                        <a href="https://classroomos.org/login" target="_blank" class="btn btn-secondary">Access Platform</a>
                     </div>
                 </div>
             </div>
 
-            <!-- ClassroomOS Product -->
-            <div class="product-feature product-feature-alt">
-                <div class="product-content">
-                    <div class="product-header">
-                        <div class="product-badge">Instructional Intelligence</div>
-                        <h3>ClassroomOS</h3>
-                    </div>
-                    
-                    <p class="product-intro">
-                        ClassroomOS is a strategic intelligence platform for instructional environments. It allows educators 
-                        across roles — teachers, tutors, substitutes, instructional coaches — to document strategy, log evidence, 
-                        and maintain operational continuity. The system preserves instructional context across personnel transitions.
-                    </p>
-
-                    <div class="product-features-list">
-                        <div class="feature-item">
-                            <h4>Strategy Snapshots</h4>
-                            <p>
-                                Educators create timestamped records of instructional decisions. Each snapshot captures context, 
-                                rationale, and intended approach. Teachers document their thinking. Substitutes access prior 
-                                strategies. Coaches review patterns over time.
-                            </p>
-                        </div>
-
-                        <div class="feature-item">
-                            <h4>Evidence Tracking</h4>
-                            <p>
-                                Structured logs connect observations to strategies. Educators mark what they see — student engagement, 
-                                comprehension signals, behavioral patterns — building a temporal record without interpretation.
-                            </p>
-                        </div>
-
-                        <div class="feature-item">
-                            <h4>Role-Based Access</h4>
-                            <p>
-                                Different users see different interfaces. Teachers create snapshots. Tutors view teacher strategies 
-                                and add their own. Substitutes inherit context. Coaches provide feedback across all documented strategies.
-                            </p>
-                        </div>
-
-                        <div class="feature-item">
-                            <h4>Continuity Across Transitions</h4>
-                            <p>
-                                When personnel change, the platform preserves strategic context. New educators access prior snapshots, 
-                                understand existing approaches, and contribute their own observations within the same structural framework.
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="product-cta">
-                        <a href="https://classroomos.org/login" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-                            Access ClassroomOS
-                        </a>
-                        <a href="#white-label" class="btn btn-secondary">
-                            License for Your Network
-                        </a>
-                    </div>
-                </div>
+            <div class="white-label-section">
+                <h3>White-Label Deployment</h3>
+                <p>
+                    Deploy ImpactOS or ClassroomOS under your organization's brand. Standardize frameworks across 
+                    consulting engagements, charter networks, or internal strategy teams.
+                </p>
+                <button onclick="openWhiteLabelModal(event)" class="btn btn-secondary">Explore Partnership</button>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Services -->
     <section id="services" class="services">
         <div class="container">
-            <div class="section-header">
-                <div class="section-label">Consulting Services</div>
-                <h2>Strategic Intelligence Deployment</h2>
-                <p class="section-intro">
-                    Beyond platform deployment, Impact Solutions Group provides strategic consulting for organizations 
-                    building intelligence infrastructure. We design analytics systems, establish data governance, and 
-                    architect decision frameworks for complex operations.
-                </p>
-            </div>
-
+            <h2>Consulting Services</h2>
             <div class="services-grid">
-                <div class="service-card">
-                    <h4>Analytics Infrastructure Design</h4>
-                    <p>
-                        Deploy enterprise-grade analytics systems with automated reporting, governance frameworks, and 
-                        decision support infrastructure. We build dashboards, KPI systems, and data pipelines for 
-                        organizations managing distributed operations.
-                    </p>
+                <div class="service-card" data-aos="fade-up">
+                    <h4>Analytics Infrastructure</h4>
+                    <p>Enterprise analytics systems with automated reporting, governance frameworks, and decision support infrastructure.</p>
                 </div>
-
-                <div class="service-card">
-                    <h4>Data Governance Architecture</h4>
-                    <p>
-                        Establish institutional data standards, compliance protocols, and quality frameworks. We design 
-                        governance structures that maintain data integrity while enabling distributed access across 
-                        organizational hierarchies.
-                    </p>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <h4>Data Governance</h4>
+                    <p>Institutional data standards, compliance protocols, and quality frameworks for distributed operations.</p>
                 </div>
-
-                <div class="service-card">
-                    <h4>Program Evaluation Systems</h4>
-                    <p>
-                        Build evaluation frameworks that demonstrate organizational effectiveness without prescribing outcomes. 
-                        We design measurement systems for funders, boards, and executive teams requiring evidence of impact.
-                    </p>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <h4>Program Evaluation</h4>
+                    <p>Rigorous evaluation frameworks demonstrating ROI and institutional effectiveness for funder scrutiny.</p>
                 </div>
-
-                <div class="service-card">
-                    <h4>Operational Process Engineering</h4>
-                    <p>
-                        Identify systemic inefficiencies, redesign operational workflows, and implement scalable systems. 
-                        We map processes, analyze bottlenecks, and architect solutions that preserve institutional knowledge.
-                    </p>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <h4>Process Engineering</h4>
+                    <p>Workflow optimization and system integration for complex organizations managing distributed operations.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- White Label Section -->
-    <section id="white-label" class="white-label">
+    <!-- Proof Point -->
+    <section class="proof">
         <div class="container">
-            <div class="white-label-content">
-                <div class="section-label">Partnership Model</div>
-                <h2>White-Label Deployment</h2>
-                <p class="white-label-intro">
-                    Impact Solutions Group deploys ImpactOS and ClassroomOS under partner brands. Organizations operating 
-                    multiple sites, serving external clients, or building internal intelligence infrastructure can license 
-                    our platforms as their own strategic systems.
-                </p>
-
-                <div class="white-label-grid">
-                    <div class="wl-point">
-                        <h4>Brand Integration</h4>
-                        <p>
-                            The platform carries your organization's identity — visual design, nomenclature, user messaging. 
-                            End users experience your brand, not ours. We remain infrastructure.
-                        </p>
-                    </div>
-
-                    <div class="wl-point">
-                        <h4>Governance Configuration</h4>
-                        <p>
-                            Partner organizations define role hierarchies, access permissions, and data visibility rules. 
-                            We configure the platform to enforce your governance structure while maintaining system integrity.
-                        </p>
-                    </div>
-
-                    <div class="wl-point">
-                        <h4>Operational Support</h4>
-                        <p>
-                            We provide implementation guidance, system configuration, and technical enablement. Your team 
-                            maintains operational control. We handle platform stability and evolution.
-                        </p>
-                    </div>
-
-                    <div class="wl-point">
-                        <h4>Scalable Architecture</h4>
-                        <p>
-                            Built for organizations managing distributed operations — charter networks, tutoring programs, 
-                            consulting firms, multi-site nonprofits. The platform scales without degrading structural consistency.
-                        </p>
-                    </div>
+            <h3>Deployed at New Jersey Tutoring Corps</h3>
+            <div class="proof-stats">
+                <div class="proof-stat">
+                    <div class="proof-value">2,000+</div>
+                    <div class="proof-label">Students Served</div>
                 </div>
-
-                <div class="white-label-use-cases">
-                    <h3>Who Deploys Our Platforms</h3>
-                    <div class="use-cases-grid">
-                        <div class="use-case">
-                            <h5>Consulting & Advisory Firms</h5>
-                            <p>Deploy ImpactOS under your brand to deliver consistent strategic frameworks across client engagements.</p>
-                        </div>
-                        <div class="use-case">
-                            <h5>Education Networks</h5>
-                            <p>License ClassroomOS for charter networks, tutoring programs, or instructional consulting portfolios.</p>
-                        </div>
-                        <div class="use-case">
-                            <h5>Multi-Program Nonprofits</h5>
-                            <p>Standardize decision logic and operational intelligence across programs, sites, and service lines.</p>
-                        </div>
-                        <div class="use-case">
-                            <h5>Internal Strategy Teams</h5>
-                            <p>Equip operations, strategy, or performance teams with enterprise-grade decision infrastructure.</p>
-                        </div>
-                    </div>
+                <div class="proof-stat">
+                    <div class="proof-value">20+</div>
+                    <div class="proof-label">Program Sites</div>
                 </div>
-
-                <div class="white-label-cta">
-                    <a href="#contact" class="btn btn-primary btn-lg">Discuss Partnership</a>
+                <div class="proof-stat">
+                    <div class="proof-value">$1M</div>
+                    <div class="proof-label">Funding Secured</div>
+                </div>
+                <div class="proof-stat">
+                    <div class="proof-value">80%</div>
+                    <div class="proof-label">Reporting Time Reduced</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Founder Section -->
-    <section id="founder" class="founder">
-        <div class="container">
-            <div class="founder-container">
-                <div class="founder-image">
-                    <div class="image-wrapper">
-                        <img src="assets/amir-wallace-photo.png" alt="Amir Wallace - Founder & Architect, Impact Solutions Group" />
-                    </div>
-                </div>
-
-                <div class="founder-content">
-                    <div class="section-label">Founder</div>
-                    <h2>Amir Wallace</h2>
-                    <p class="founder-title">Founder & Architect, Impact Solutions Group</p>
-                    
-                    <div class="founder-bio">
-                        <p>
-                            I design intelligence systems for organizations that need to see their operations clearly without 
-                            imposing external evaluation frameworks. My work focuses on structural integrity — ensuring data 
-                            has temporal consistency, role-based access follows governance logic, and strategic documentation 
-                            persists across personnel transitions.
-                        </p>
-                        <p>
-                            Before founding Impact Solutions Group, I built evaluation infrastructure for New Jersey Tutoring Corps, 
-                            serving 2,000+ students across 20+ sites. That work demonstrated that operational intelligence is most 
-                            useful when it surfaces patterns without prescribing interpretations.
-                        </p>
-                        <p>
-                            ImpactOS and ClassroomOS emerged from that principle. Organizations operating at scale need systems 
-                            that maintain fidelity to operational reality while allowing distributed decision-making. That's the 
-                            work I do.
-                        </p>
-                    </div>
-
-                    <div class="founder-contact">
-                        <a href="https://www.linkedin.com/in/amir-wallace-5b2164394/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-                            Connect on LinkedIn
-                        </a>
-                    </div>
+    <!-- Founder -->
+    <section id="about" class="about">
+        <div class="container about-container">
+            <div class="about-image" data-aos="fade-right">
+                <img src="assets/amir-wallace-photo.png" alt="Amir Wallace - Founder, Impact Solutions Group" />
+                <div class="credentials">
+                    <span>Systems Architect</span>
+                    <span>Intelligence Infrastructure</span>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Mission Statement -->
-    <section class="mission">
-        <div class="container">
-            <div class="mission-content">
-                <h2>Our Mission</h2>
+            <div class="about-content" data-aos="fade-left">
+                <h2>Amir Wallace</h2>
+                <p class="about-title">Founder & Architect, Impact Solutions Group</p>
                 <p>
-                    Impact Solutions Group exists to build strategic intelligence infrastructure that respects human judgment. 
-                    We create systems that document operational reality without evaluating it, maintain structural consistency 
-                    without constraining flexibility, and scale across distributed environments without losing fidelity. Our 
-                    platforms surface what's happening so leaders and educators can decide what it means.
+                    I design intelligence systems for organizations that need to see their operations clearly. 
+                    My work focuses on structural integrity—ensuring data has temporal consistency, role-based 
+                    access follows governance logic, and strategic documentation persists across personnel transitions.
                 </p>
+                <p>
+                    Before founding Impact Solutions Group, I built evaluation infrastructure for New Jersey Tutoring Corps, 
+                    serving 2,000+ students across 20+ sites. ImpactOS and ClassroomOS emerged from that work.
+                </p>
+                <div class="about-cta">
+                    <a href="https://www.linkedin.com/in/amir-wallace-5b2164394/" target="_blank" class="btn btn-primary">
+                        Connect on LinkedIn
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">Schedule Consultation</a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact -->
     <section id="contact" class="contact">
-        <div class="container">
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h2>Partner With Us</h2>
-                    <p class="contact-description">
-                        If your organization operates at scale, serves external clients, or needs strategic intelligence 
-                        infrastructure under your own brand, we should talk.
-                    </p>
-
-                    <div class="contact-methods">
-                        <a href="mailto:impactsolutionsgroup25@gmail.com" class="contact-method">
-                            <div class="method-content">
-                                <div class="method-label">Email</div>
-                                <div class="method-value">impactsolutionsgroup25@gmail.com</div>
-                            </div>
-                        </a>
-
-                        <a href="https://www.linkedin.com/in/amir-wallace-5b2164394/" target="_blank" rel="noopener noreferrer" class="contact-method">
-                            <div class="method-content">
-                                <div class="method-label">LinkedIn</div>
-                                <div class="method-value">Connect with Amir Wallace</div>
-                            </div>
-                        </a>
+        <div class="container contact-container">
+            <div class="contact-info">
+                <h2>Partner With Us</h2>
+                <p>Deploy strategic intelligence infrastructure under your brand or engage consulting services.</p>
+                <div class="contact-methods">
+                    <a href="mailto:impactsolutionsgroup25@gmail.com" class="contact-method">
+                        <span class="method-label">Email</span>
+                        <span class="method-value">impactsolutionsgroup25@gmail.com</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/amir-wallace-5b2164394/" target="_blank" class="contact-method">
+                        <span class="method-label">LinkedIn</span>
+                        <span class="method-value">Connect with Amir</span>
+                    </a>
+                </div>
+            </div>
+            <div class="contact-form-wrapper">
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
                     </div>
-                </div>
-
-                <div class="contact-form-wrapper">
-                    <form id="contactForm" class="contact-form">
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" name="name" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="email">Email Address</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="organization">Organization</label>
-                            <input type="text" id="organization" name="organization" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="service">Partnership Interest</label>
-                            <select id="service" name="service" required>
-                                <option value="">Select an option</option>
-                                <option value="impactos">ImpactOS Implementation</option>
-                                <option value="classroomos">ClassroomOS Implementation</option>
-                                <option value="white-label">White-Label Deployment</option>
-                                <option value="consulting">Strategic Consulting</option>
-                                <option value="other">Other</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="message">Details</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary btn-lg btn-block">
-                            <span class="btn-text">Send Message</span>
-                            <span class="btn-loader"></span>
-                        </button>
-
-                        <div class="form-message" id="formMessage"></div>
-                    </form>
-                </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="organization">Organization</label>
+                        <input type="text" id="organization" name="organization">
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Interest</label>
+                        <select id="service" name="service" required>
+                            <option value="">Select</option>
+                            <option value="impactos">ImpactOS</option>
+                            <option value="classroomos">ClassroomOS</option>
+                            <option value="white-label">White-Label</option>
+                            <option value="consulting">Consulting</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Details</label>
+                        <textarea id="message" name="message" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">
+                        <span class="btn-text">Send Message</span>
+                        <span class="btn-loader"></span>
+                    </button>
+                    <div class="form-message" id="formMessage"></div>
+                </form>
             </div>
         </div>
     </section>
@@ -498,45 +346,101 @@
             <div class="footer-content">
                 <div class="footer-brand">
                     <h3>Impact Solutions Group</h3>
-                    <p>Strategic intelligence infrastructure for organizations that operate at scale</p>
+                    <p>Strategic intelligence infrastructure for organizations at scale</p>
                 </div>
-
                 <div class="footer-links">
                     <div class="footer-column">
-                        <h4>Products</h4>
+                        <h4>Platforms</h4>
                         <ul>
-                            <li><a href="#products">ImpactOS</a></li>
-                            <li><a href="#products">ClassroomOS</a></li>
-                            <li><a href="#white-label">White Label</a></li>
+                            <li><a href="#platforms">ImpactOS</a></li>
+                            <li><a href="#platforms">ClassroomOS</a></li>
                         </ul>
                     </div>
-
-                    <div class="footer-column">
-                        <h4>Services</h4>
-                        <ul>
-                            <li><a href="#services">Analytics Infrastructure</a></li>
-                            <li><a href="#services">Data Governance</a></li>
-                            <li><a href="#services">Strategic Consulting</a></li>
-                        </ul>
-                    </div>
-
                     <div class="footer-column">
                         <h4>Company</h4>
                         <ul>
-                            <li><a href="#founder">About Amir</a></li>
+                            <li><a href="#about">About</a></li>
                             <li><a href="#contact">Contact</a></li>
-                            <li><a href="https://www.linkedin.com/in/amir-wallace-5b2164394/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
-
             <div class="footer-bottom">
-                <p>Powered by Impact Solutions Group LLC</p>
+                <p>&copy; 2025 Impact Solutions Group LLC</p>
             </div>
         </div>
     </footer>
 
-    <script src="script-complete.js"></script>
+    <!-- Modals -->
+    <div id="impactosModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeImpactOSDemo()">&times;</button>
+            <h2>Request ImpactOS Demo</h2>
+            <form id="impactosForm">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="text" name="organization" placeholder="Organization" required>
+                <select name="role" required>
+                    <option value="">Your Role</option>
+                    <option value="executive">Executive</option>
+                    <option value="director">Director</option>
+                    <option value="manager">Manager</option>
+                </select>
+                <textarea name="needs" rows="3" placeholder="Decision intelligence needs"></textarea>
+                <button type="submit" class="btn btn-primary btn-block">Request Demo</button>
+                <div class="form-message" id="impactosFormMessage"></div>
+            </form>
+        </div>
+    </div>
+
+    <div id="classroomosModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeClassroomOSDemo()">&times;</button>
+            <h2>Request ClassroomOS Demo</h2>
+            <form id="classroomosForm">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="text" name="organization" placeholder="School/Organization" required>
+                <select name="role" required>
+                    <option value="">Your Role</option>
+                    <option value="administrator">Administrator</option>
+                    <option value="coach">Instructional Coach</option>
+                    <option value="teacher">Teacher</option>
+                </select>
+                <textarea name="needs" rows="3" placeholder="Instructional intelligence needs"></textarea>
+                <button type="submit" class="btn btn-primary btn-block">Request Demo</button>
+                <div class="form-message" id="classroomosFormMessage"></div>
+            </form>
+        </div>
+    </div>
+
+    <div id="whiteLabelModal" class="modal white-label-modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeWhiteLabelModal()">&times;</button>
+            <h2>White-Label Deployment</h2>
+            <p>Deploy ImpactOS or ClassroomOS under your organization's brand for consulting firms, education networks, or internal strategy teams.</p>
+            <div class="wl-grid">
+                <div class="wl-card">
+                    <h4>Consulting Firms</h4>
+                    <p>Deliver consistent frameworks across client engagements</p>
+                </div>
+                <div class="wl-card">
+                    <h4>Education Networks</h4>
+                    <p>Standardize intelligence across charter portfolios</p>
+                </div>
+                <div class="wl-card">
+                    <h4>Nonprofits</h4>
+                    <p>Unified decision logic across programs and sites</p>
+                </div>
+                <div class="wl-card">
+                    <h4>Strategy Teams</h4>
+                    <p>Enterprise-grade infrastructure for internal ops</p>
+                </div>
+            </div>
+            <a href="#contact" onclick="closeWhiteLabelModal()" class="btn btn-primary btn-lg">Schedule Consultation</a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
