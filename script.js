@@ -1,6 +1,8 @@
 // ==========================================
-// IMPACT SOLUTIONS GROUP - JAVASCRIPT
-// Interactive Features & Animations
+// IMPACT SOLUTIONS GROUP - COMPLETE
+// Premium Strategic Intelligence Firm
+// ImpactOS + ClassroomOS Products
+// ALL ORIGINAL FUNCTIONALITY PRESERVED
 // ==========================================
 
 // === INITIALIZATION ===
@@ -11,6 +13,8 @@ document.addEventListener('DOMContentLoaded', () => {
     initImpactOSModal();
     initSmoothScroll();
     initDashboardAnimation();
+    initWhiteLabelModal();
+    initLogoAnimation();
 });
 
 // === IMPACTOS MODAL ===
@@ -340,8 +344,6 @@ function initContactForm() {
 }
 
 // === STATS COUNTER ANIMATION ===
-
-// Animate number from 0 to target
 function animateCounter(element, target, duration = 2000) {
     let start = 0;
     const increment = target / (duration / 16);
@@ -358,7 +360,6 @@ function animateCounter(element, target, duration = 2000) {
     }, 16);
 }
 
-// Formats numbers back into readable strings
 function formatStatNumber(num) {
     if (num >= 1000000) return `$${(num / 1000000).toFixed(1)}M+`;
     if (num >= 1000) return `${num.toLocaleString()}+`;
@@ -366,7 +367,6 @@ function formatStatNumber(num) {
     return num.toString();
 }
 
-// Observer triggers animation when stats scroll into view
 const statsObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -381,16 +381,10 @@ const statsObserver = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.5 });
 
-// Initialize all stats
 document.querySelectorAll('.stat-number').forEach(stat => {
     const targetValue = stat.getAttribute('data-value');
-
     if (!targetValue) return;
-
-    // Start numbers visually at 0
     stat.textContent = '0';
-
-    // Start observing
     statsObserver.observe(stat);
 });
 
@@ -398,13 +392,11 @@ document.querySelectorAll('.stat-number').forEach(stat => {
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     
-    // Hero background parallax
     const heroBackground = document.querySelector('.hero-background');
     if (heroBackground) {
         heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
     }
     
-    // Dashboard preview parallax
     const dashboard = document.querySelector('.dashboard-preview');
     if (dashboard && scrolled < window.innerHeight) {
         dashboard.style.transform = `translateY(${scrolled * 0.1}px) rotate(${scrolled * 0.02}deg)`;
@@ -434,7 +426,6 @@ document.querySelectorAll('.service-card, .case-study-card').forEach(card => {
 
 // === KEYBOARD NAVIGATION ===
 document.addEventListener('keydown', (e) => {
-    // Escape key closes mobile menu
     if (e.key === 'Escape') {
         const navMenu = document.querySelector('.nav-menu');
         const mobileToggle = document.querySelector('.mobile-menu-toggle');
@@ -452,7 +443,6 @@ document.addEventListener('keydown', (e) => {
 });
 
 // === PERFORMANCE OPTIMIZATION ===
-// Debounce function for scroll events
 function debounce(func, wait = 10) {
     let timeout;
     return function executedFunction(...args) {
@@ -465,7 +455,6 @@ function debounce(func, wait = 10) {
     };
 }
 
-// Lazy load images
 if ('IntersectionObserver' in window) {
     const imageObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -486,16 +475,15 @@ if ('IntersectionObserver' in window) {
 }
 
 // === ACCESSIBILITY ENHANCEMENTS ===
-// Skip to main content
 const skipLink = document.createElement('a');
-skipLink.href = '#impactos';
+skipLink.href = '#products';
 skipLink.textContent = 'Skip to main content';
 skipLink.className = 'skip-link';
 skipLink.style.cssText = `
     position: absolute;
     top: -40px;
     left: 0;
-    background: var(--primary);
+    background: var(--navy-primary);
     color: white;
     padding: 8px;
     text-decoration: none;
@@ -509,7 +497,6 @@ skipLink.addEventListener('blur', () => {
 });
 document.body.insertBefore(skipLink, document.body.firstChild);
 
-// Focus management for modals/menus
 const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
 function trapFocus(element) {
@@ -534,13 +521,107 @@ function trapFocus(element) {
     });
 }
 
-// === CONSOLE EASTER EGG ===
-console.log('%c👋 Hey there!', 'font-size: 24px; font-weight: bold; color: #0EA5E9;');
-console.log('%cImpact Solutions Group', 'font-size: 16px; color: #8B5CF6;');
-console.log('%cLooking at the code? Nice! We love data-driven professionals.', 'font-size: 14px; color: #94A3B8;');
-console.log('%cWant to work together? Contact Amir: impactsolutionsgroup25@gmail.com', 'font-size: 14px; color: #10B981;');
+// === WHITE LABELING MODAL FUNCTIONS ===
+function openWhiteLabelModal(event) {
+    if (event) event.preventDefault();
+    
+    const modal = document.getElementById('whiteLabelModal');
+    if (modal) {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        setTimeout(() => {
+            modal.classList.add('active');
+        }, 10);
+        
+        const firstFocusable = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+        if (firstFocusable) {
+            setTimeout(() => firstFocusable.focus(), 100);
+        }
+    }
+}
 
-// === EXPORT FUNCTIONS (for potential use) ===
+function closeWhiteLabelModal() {
+    const modal = document.getElementById('whiteLabelModal');
+    if (modal) {
+        modal.classList.remove('active');
+        
+        setTimeout(() => {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }, 300);
+    }
+}
+
+function initWhiteLabelModal() {
+    const modal = document.getElementById('whiteLabelModal');
+    
+    if (!modal) return;
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && modal.style.display === 'flex') {
+            closeWhiteLabelModal();
+        }
+    });
+    
+    modal.addEventListener('click', (e) => {
+        if (e.target.id === 'whiteLabelModal') {
+            closeWhiteLabelModal();
+        }
+    });
+    
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.attributeName === 'style') {
+                if (modal.style.display === 'flex') {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = 'auto';
+                }
+            }
+        });
+    });
+    
+    observer.observe(modal, { attributes: true });
+}
+
+function initLogoAnimation() {
+    const logo = document.querySelector('.logo');
+    
+    if (!logo) return;
+    
+    logo.addEventListener('mouseenter', () => {
+        const svg = logo.querySelector('svg');
+        if (svg) {
+            svg.style.filter = 'drop-shadow(0 0 16px rgba(14, 165, 233, 0.8))';
+        }
+    });
+    
+    logo.addEventListener('mouseleave', () => {
+        const svg = logo.querySelector('svg');
+        if (svg) {
+            svg.style.filter = 'drop-shadow(0 0 8px rgba(14, 165, 233, 0.4))';
+        }
+    });
+    
+    const svg = logo.querySelector('svg rect');
+    if (svg) {
+        setInterval(() => {
+            svg.style.filter = 'brightness(1.3)';
+            setTimeout(() => {
+                svg.style.filter = 'brightness(1)';
+            }, 600);
+        }, 3000);
+    }
+}
+
+// === CONSOLE EASTER EGG ===
+console.log('%c👋 Hey there!', 'font-size: 24px; font-weight: bold; color: #0F1D40;');
+console.log('%cImpact Solutions Group', 'font-size: 16px; color: #4A5F7F;');
+console.log('%cLooking at the code? Nice! We love data-driven professionals.', 'font-size: 14px; color: #6B7FA3;');
+console.log('%cWant to work together? Contact Amir: impactsolutionsgroup25@gmail.com', 'font-size: 14px; color: #0F1D40;');
+
+// === EXPORT FUNCTIONS ===
 window.ImpactSolutions = {
     showFormMessage: (message, type) => {
         const formMessage = document.getElementById('formMessage');
@@ -560,275 +641,7 @@ window.ImpactSolutions = {
         }
     },
     openImpactOSDemo: openImpactOSDemo,
-    closeImpactOSDemo: closeImpactOSDemo
+    closeImpactOSDemo: closeImpactOSDemo,
+    openWhiteLabelModal: openWhiteLabelModal,
+    closeWhiteLabelModal: closeWhiteLabelModal
 };
-
-// ==========================================
-// WHITE LABELING MODAL FUNCTIONS
-// Append to your existing script.js
-// ==========================================
-
-/**
- * Open White Label Modal
- */
-function openWhiteLabelModal(event) {
-    if (event) event.preventDefault();
-    
-    const modal = document.getElementById('whiteLabelModal');
-    if (modal) {
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-        
-        // Animate in
-        setTimeout(() => {
-            modal.classList.add('active');
-        }, 10);
-        
-        // Focus trap for accessibility
-        const firstFocusable = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-        if (firstFocusable) {
-            setTimeout(() => firstFocusable.focus(), 100);
-        }
-    }
-}
-
-/**
- * Close White Label Modal
- */
-function closeWhiteLabelModal() {
-    const modal = document.getElementById('whiteLabelModal');
-    if (modal) {
-        modal.classList.remove('active');
-        
-        setTimeout(() => {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }, 300);
-    }
-}
-
-/**
- * Initialize White Label Modal
- */
-function initWhiteLabelModal() {
-    const modal = document.getElementById('whiteLabelModal');
-    
-    if (!modal) return;
-    
-    // Close on ESC key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.style.display === 'flex') {
-            closeWhiteLabelModal();
-        }
-    });
-    
-    // Close on backdrop click
-    modal.addEventListener('click', (e) => {
-        if (e.target.id === 'whiteLabelModal') {
-            closeWhiteLabelModal();
-        }
-    });
-    
-    // Prevent body scroll when modal open
-    const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            if (mutation.attributeName === 'style') {
-                if (modal.style.display === 'flex') {
-                    document.body.style.overflow = 'hidden';
-                } else {
-                    document.body.style.overflow = 'auto';
-                }
-            }
-        });
-    });
-    
-    observer.observe(modal, { attributes: true });
-}
-
-// Initialize on DOM ready
-document.addEventListener('DOMContentLoaded', () => {
-    initWhiteLabelModal();
-    initLogoAnimation(); // Call logo animation initializer
-});
-
-/**
- * Animated Logo Enhancement
- * Adds glow and subtle animation to existing logo
- */
-function initLogoAnimation() {
-    const logo = document.querySelector('.logo');
-    
-    if (!logo) return;
-    
-    // Add hover glow effect
-    logo.addEventListener('mouseenter', () => {
-        const svg = logo.querySelector('svg');
-        if (svg) {
-            svg.style.filter = 'drop-shadow(0 0 16px rgba(14, 165, 233, 0.8))';
-        }
-    });
-    
-    logo.addEventListener('mouseleave', () => {
-        const svg = logo.querySelector('svg');
-        if (svg) {
-            svg.style.filter = 'drop-shadow(0 0 8px rgba(14, 165, 233, 0.4))';
-        }
-    });
-    
-    // Subtle pulse animation
-    const svg = logo.querySelector('svg rect');
-    if (svg) {
-        setInterval(() => {
-            svg.style.filter = 'brightness(1.3)';
-            setTimeout(() => {
-                svg.style.filter = 'brightness(1)';
-            }, 600);
-        }, 3000);
-    }
-}
-
-/**
- * Export functions for global access
- */
-window.ImpactSolutions = window.ImpactSolutions || {};
-window.ImpactSolutions.openWhiteLabelModal = openWhiteLabelModal;
-window.ImpactSolutions.closeWhiteLabelModal = closeWhiteLabelModal;
-
-// ==========================================
-// END WHITE LABELING MODAL FUNCTIONS
-// ==========================================
-
-// ==========================================
-// WHITE LABELING MODAL FUNCTIONS
-// Append to your existing script.js
-// ==========================================
-
-/**
- * Open White Label Modal
- */
-function openWhiteLabelModal(event) {
-    if (event) event.preventDefault();
-    
-    const modal = document.getElementById('whiteLabelModal');
-    if (modal) {
-        modal.style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-        
-        // Animate in
-        setTimeout(() => {
-            modal.classList.add('active');
-        }, 10);
-        
-        // Focus trap for accessibility
-        const firstFocusable = modal.querySelector('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
-        if (firstFocusable) {
-            setTimeout(() => firstFocusable.focus(), 100);
-        }
-    }
-}
-
-/**
- * Close White Label Modal
- */
-function closeWhiteLabelModal() {
-    const modal = document.getElementById('whiteLabelModal');
-    if (modal) {
-        modal.classList.remove('active');
-        
-        setTimeout(() => {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }, 300);
-    }
-}
-
-/**
- * Initialize White Label Modal
- */
-function initWhiteLabelModal() {
-    const modal = document.getElementById('whiteLabelModal');
-    
-    if (!modal) return;
-    
-    // Close on ESC key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && modal.style.display === 'flex') {
-            closeWhiteLabelModal();
-        }
-    });
-    
-    // Close on backdrop click
-    modal.addEventListener('click', (e) => {
-        if (e.target.id === 'whiteLabelModal') {
-            closeWhiteLabelModal();
-        }
-    });
-    
-    // Prevent body scroll when modal open
-    const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            if (mutation.attributeName === 'style') {
-                if (modal.style.display === 'flex') {
-                    document.body.style.overflow = 'hidden';
-                } else {
-                    document.body.style.overflow = 'auto';
-                }
-            }
-        });
-    });
-    
-    observer.observe(modal, { attributes: true });
-}
-
-// Initialize on DOM ready
-document.addEventListener('DOMContentLoaded', () => {
-    initWhiteLabelModal();
-    initLogoAnimation(); // Call logo animation initializer
-});
-
-/**
- * Animated Logo Enhancement
- * Adds glow and subtle animation to existing logo
- */
-function initLogoAnimation() {
-    const logo = document.querySelector('.logo');
-    
-    if (!logo) return;
-    
-    // Add hover glow effect
-    logo.addEventListener('mouseenter', () => {
-        const svg = logo.querySelector('svg');
-        if (svg) {
-            svg.style.filter = 'drop-shadow(0 0 16px rgba(14, 165, 233, 0.8))';
-        }
-    });
-    
-    logo.addEventListener('mouseleave', () => {
-        const svg = logo.querySelector('svg');
-        if (svg) {
-            svg.style.filter = 'drop-shadow(0 0 8px rgba(14, 165, 233, 0.4))';
-        }
-    });
-    
-    // Subtle pulse animation
-    const svg = logo.querySelector('svg rect');
-    if (svg) {
-        setInterval(() => {
-            svg.style.filter = 'brightness(1.3)';
-            setTimeout(() => {
-                svg.style.filter = 'brightness(1)';
-            }, 600);
-        }, 3000);
-    }
-}
-
-/**
- * Export functions for global access
- */
-window.ImpactSolutions = window.ImpactSolutions || {};
-window.ImpactSolutions.openWhiteLabelModal = openWhiteLabelModal;
-window.ImpactSolutions.closeWhiteLabelModal = closeWhiteLabelModal;
-
-// ==========================================
-// END WHITE LABELING MODAL FUNCTIONS
-// ==========================================
