@@ -5,17 +5,466 @@
     <link rel="canonical" href="https://impactsolutionsgroup.github.io/ImpactGroup/" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Impact Solutions Group builds strategic intelligence infrastructure. ImpactOS for executive teams. ClassroomOS for instructional environments.">
-    <title>Impact Solutions Group | Strategic Intelligence Infrastructure</title>
-    
+    <meta name="description" content="Impact Solutions Group builds operating systems for execution — not tools for planning. ImpactOS for operators and executives. ClassroomOS for instructional environments. Guided by a human strategist.">
+    <title>Impact Solutions Group | Operating Systems for Execution</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+
+    <style>
+        /* ── ADDITIONS: positioning, classroomos section, segmentation, why-exists ── */
+
+        /* Thin mono label used across new sections */
+        .mono-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: var(--spacing-sm);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .mono-label::before {
+            content: '';
+            display: block;
+            width: 2rem;
+            height: 1px;
+            background: var(--primary);
+        }
+
+        /* ── OS FRAMING BAND ── */
+        .os-framing {
+            padding: var(--spacing-3xl) 0;
+            background: var(--bg-primary);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .os-framing-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-3xl);
+            align-items: center;
+        }
+        .os-statement {
+            font-size: clamp(1.5rem, 2.5vw, 2.1rem);
+            font-weight: 700;
+            line-height: 1.25;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-lg);
+        }
+        .os-statement em {
+            font-style: normal;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .os-compare {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+        .os-compare-row {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: var(--spacing-md);
+            padding: var(--spacing-sm) var(--spacing-md);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .os-compare-bad  { font-size: 0.875rem; color: var(--text-muted); text-decoration: line-through; }
+        .os-compare-arrow{ font-size: 0.75rem; color: var(--primary); font-family: var(--font-mono); }
+        .os-compare-good { font-size: 0.875rem; color: var(--text-primary); font-weight: 600; }
+
+        /* ── WHO THIS IS FOR (SEGMENTATION) ── */
+        .segmentation {
+            padding: var(--spacing-3xl) 0;
+            background: var(--bg-secondary);
+        }
+        .seg-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-xl);
+            margin-top: var(--spacing-2xl);
+        }
+        .seg-card {
+            background: var(--bg-primary);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            transition: all var(--transition-base);
+            position: relative;
+            overflow: hidden;
+        }
+        .seg-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            opacity: 0;
+            transition: opacity var(--transition-base);
+        }
+        .seg-card:hover { transform: translateY(-6px); border-color: rgba(14,165,233,0.3); }
+        .seg-card:hover::before { opacity: 1; }
+        .seg-icon { font-size: 2rem; margin-bottom: var(--spacing-md); display: block; }
+        .seg-title { font-size: 1.125rem; font-weight: 700; color: var(--text-primary); margin-bottom: var(--spacing-sm); }
+        .seg-subtitle { font-size: 0.8125rem; font-weight: 600; color: var(--primary); margin-bottom: var(--spacing-md); font-family: var(--font-mono); letter-spacing: 0.05em; }
+        .seg-body { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.65; margin: 0; }
+        .seg-os-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            margin-top: var(--spacing-md);
+            font-size: 0.75rem;
+            font-weight: 600;
+            font-family: var(--font-mono);
+            color: var(--secondary);
+            background: rgba(139,92,246,0.1);
+            border: 1px solid rgba(139,92,246,0.25);
+            padding: 0.25rem 0.625rem;
+            border-radius: var(--radius-sm);
+        }
+
+        /* ── WHY THIS EXISTS ── */
+        .why-exists {
+            padding: var(--spacing-3xl) 0;
+            background: var(--bg-primary);
+        }
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: var(--spacing-3xl);
+            align-items: start;
+        }
+        .why-quote {
+            font-size: clamp(1.25rem, 2vw, 1.75rem);
+            font-weight: 700;
+            line-height: 1.4;
+            color: var(--text-primary);
+            border-left: 3px solid var(--primary);
+            padding-left: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+        .why-quote em {
+            font-style: italic;
+            color: var(--primary);
+        }
+        .why-body { font-size: 1rem; color: var(--text-secondary); line-height: 1.75; margin-bottom: var(--spacing-md); }
+        .why-body strong { color: var(--text-primary); }
+        .differentiator-list {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+        .diff-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--spacing-md);
+            padding: var(--spacing-md);
+            background: var(--bg-secondary);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(255,255,255,0.07);
+        }
+        .diff-icon { font-size: 1.25rem; flex-shrink: 0; margin-top: 2px; }
+        .diff-title { font-size: 0.9375rem; font-weight: 700; color: var(--text-primary); margin-bottom: 3px; }
+        .diff-body  { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6; margin: 0; }
+
+        /* ── PLATFORM CARDS — enhanced for OS framing ── */
+        .platform-failure {
+            font-size: 0.8125rem;
+            font-family: var(--font-mono);
+            font-weight: 600;
+            color: #EF4444;
+            background: rgba(239,68,68,0.08);
+            border: 1px solid rgba(239,68,68,0.2);
+            border-radius: var(--radius-sm);
+            padding: 0.375rem 0.75rem;
+            margin-bottom: var(--spacing-md);
+            display: inline-block;
+        }
+        .platform-capability {
+            font-size: 0.8125rem;
+            font-family: var(--font-mono);
+            font-weight: 600;
+            color: var(--accent);
+            background: rgba(16,185,129,0.08);
+            border: 1px solid rgba(16,185,129,0.2);
+            border-radius: var(--radius-sm);
+            padding: 0.375rem 0.75rem;
+            margin-bottom: var(--spacing-md);
+            display: inline-block;
+        }
+        .platform-outcome-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            margin-bottom: var(--spacing-xs);
+            margin-top: var(--spacing-md);
+        }
+
+        /* ── CLASSROOMOS DEEP SECTION ── */
+        .classroomos-section {
+            padding: var(--spacing-3xl) 0;
+            background: linear-gradient(180deg, var(--bg-primary) 0%, rgba(139,92,246,0.04) 50%, var(--bg-primary) 100%);
+            border-top: 1px solid rgba(139,92,246,0.15);
+            border-bottom: 1px solid rgba(139,92,246,0.15);
+        }
+        .cos-header {
+            text-align: center;
+            max-width: 760px;
+            margin: 0 auto var(--spacing-3xl);
+        }
+        .cos-header .mono-label { justify-content: center; }
+        .cos-header .mono-label::before { display: none; }
+        .cos-headline {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: var(--spacing-md);
+        }
+        .cos-subhead { font-size: 1.125rem; color: var(--text-secondary); line-height: 1.7; margin: 0; }
+        .cos-subhead strong { color: var(--text-primary); }
+
+        /* Pain stats bar */
+        .cos-pain-bar {
+            background: rgba(239,68,68,0.07);
+            border: 1px solid rgba(239,68,68,0.2);
+            border-left: 4px solid #EF4444;
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-lg) var(--spacing-xl);
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-3xl);
+        }
+        .cos-pain-stat { border-right: 1px solid rgba(239,68,68,0.15); padding-right: var(--spacing-lg); }
+        .cos-pain-stat:last-child { border-right: none; padding-right: 0; }
+        .cos-pain-num { font-size: 2.5rem; font-weight: 800; color: #EF4444; line-height: 1; margin-bottom: 0.25rem; font-family: var(--font-mono); }
+        .cos-pain-label { font-size: 0.8125rem; font-weight: 600; color: var(--text-secondary); line-height: 1.4; }
+        .cos-pain-source { font-size: 0.6875rem; color: var(--text-muted); margin-top: 0.2rem; font-family: var(--font-mono); }
+
+        /* Feature grid */
+        .cos-feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-3xl);
+        }
+        .cos-feat {
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-xl);
+            position: relative;
+            overflow: hidden;
+            transition: all var(--transition-base);
+        }
+        .cos-feat::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+        }
+        .cos-feat.violet::before { background: linear-gradient(90deg,#7c3aed,#8b5cf6); }
+        .cos-feat.amber::before  { background: linear-gradient(90deg,#d97706,#f59e0b); }
+        .cos-feat.green::before  { background: linear-gradient(90deg,#059669,#10b981); }
+        .cos-feat.teal::before   { background: linear-gradient(90deg,#0d9488,#14b8a6); }
+        .cos-feat.indigo::before { background: linear-gradient(90deg,#4338ca,#6366f1); }
+        .cos-feat.red::before    { background: linear-gradient(90deg,#dc2626,#ef4444); }
+        .cos-feat:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.14); }
+        .cos-feat-num { font-family: var(--font-mono); font-size: 0.6875rem; color: var(--text-muted); margin-bottom: var(--spacing-md); }
+        .cos-feat-icon { font-size: 1.75rem; margin-bottom: var(--spacing-sm); display: block; }
+        .cos-feat-title { font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: var(--spacing-xs); }
+        .cos-feat-body { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.65; margin: 0 0 var(--spacing-sm); }
+        .cos-feat-tag {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.6875rem;
+            font-weight: 600;
+            padding: 0.2rem 0.5rem;
+            border-radius: var(--radius-sm);
+            background: rgba(139,92,246,0.12);
+            color: var(--secondary);
+            border: 1px solid rgba(139,92,246,0.2);
+        }
+
+        /* Role strip */
+        .cos-role-strip {
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-3xl);
+        }
+        .cos-role {
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-lg);
+            transition: all var(--transition-base);
+        }
+        .cos-role:hover { transform: translateY(-3px); border-color: rgba(14,165,233,0.3); }
+        .cos-role-icon  { font-size: 1.75rem; margin-bottom: var(--spacing-sm); display: block; }
+        .cos-role-name  { font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem; }
+        .cos-role-gets  { font-size: 0.8125rem; color: var(--text-secondary); line-height: 1.55; margin: 0; }
+
+        /* Proof band */
+        .cos-proof {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-3xl);
+            align-items: start;
+        }
+        .cos-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+        }
+        .cos-metric {
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-lg);
+            text-align: center;
+        }
+        .cos-metric-num { font-family: var(--font-mono); font-size: 2.75rem; font-weight: 800; line-height: 1; margin-bottom: 0.25rem; }
+        .cos-metric-num.green  { color: var(--accent); }
+        .cos-metric-num.violet { color: var(--secondary); }
+        .cos-metric-num.amber  { color: #F59E0B; }
+        .cos-metric-num.white  { color: var(--text-primary); }
+        .cos-metric-label { font-size: 0.8125rem; color: var(--text-muted); line-height: 1.4; }
+        .cos-platforms-box {
+            margin-top: var(--spacing-md);
+            background: rgba(139,92,246,0.06);
+            border: 1px solid rgba(139,92,246,0.18);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-md);
+        }
+        .cos-platforms-label { font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 600; color: var(--secondary); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--spacing-sm); }
+        .cos-platform-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .cos-ptag {
+            font-size: 0.8125rem; font-weight: 600; color: var(--text-secondary);
+            background: var(--bg-primary); border: 1px solid rgba(255,255,255,0.1);
+            padding: 0.25rem 0.625rem; border-radius: var(--radius-sm);
+        }
+        .cos-ptag.highlight { color: var(--secondary); background: rgba(139,92,246,0.1); border-color: rgba(139,92,246,0.25); }
+        .cos-proof-text { font-size: 0.9375rem; color: var(--text-secondary); line-height: 1.75; }
+        .cos-proof-text strong { color: var(--text-primary); }
+        .cos-outcomes { display: flex; flex-direction: column; gap: var(--spacing-md); margin-top: var(--spacing-lg); }
+        .cos-outcome-item { display: flex; align-items: flex-start; gap: var(--spacing-sm); }
+        .cos-outcome-check {
+            width: 20px; height: 20px; border-radius: 5px; flex-shrink: 0;
+            background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.3);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.6875rem; color: var(--accent); margin-top: 2px;
+        }
+        .cos-outcome-text { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.6; }
+        .cos-outcome-text strong { color: var(--text-primary); }
+
+        /* CTA inside classroomos section */
+        .cos-cta {
+            margin-top: var(--spacing-3xl);
+            background: linear-gradient(135deg, rgba(139,92,246,0.1), rgba(14,165,233,0.06));
+            border: 1px solid rgba(139,92,246,0.25);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-2xl);
+            text-align: center;
+        }
+        .cos-cta h3 { margin-bottom: var(--spacing-sm); }
+        .cos-cta p { max-width: 560px; margin: 0 auto var(--spacing-xl); }
+        .cos-cta-btns { display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap; }
+
+        /* ── CONSULTING — force multiplier framing ── */
+        .consulting-frame {
+            background: var(--bg-secondary);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius-xl);
+            padding: var(--spacing-2xl);
+            margin-top: var(--spacing-2xl);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-3xl);
+            align-items: start;
+        }
+        .consulting-manifesto {
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1.4;
+            color: var(--text-primary);
+            border-left: 3px solid var(--secondary);
+            padding-left: var(--spacing-lg);
+            margin-bottom: var(--spacing-lg);
+        }
+        .consulting-list { display: flex; flex-direction: column; gap: var(--spacing-sm); }
+        .consulting-item {
+            display: flex; align-items: flex-start; gap: var(--spacing-sm);
+            padding: var(--spacing-sm); background: var(--bg-primary);
+            border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.06);
+        }
+        .consulting-item-icon { flex-shrink: 0; font-size: 1rem; margin-top: 1px; }
+        .consulting-item-text { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.55; margin: 0; }
+        .consulting-item-text strong { color: var(--text-primary); }
+
+        /* ── TICKER ── */
+        .signal-ticker {
+            background: rgba(14,165,233,0.05);
+            border-top: 1px solid rgba(14,165,233,0.15);
+            border-bottom: 1px solid rgba(14,165,233,0.15);
+            padding: 0.75rem 0;
+            overflow: hidden;
+        }
+        .ticker-track {
+            display: flex;
+            gap: 3rem;
+            animation: ticker 35s linear infinite;
+            white-space: nowrap;
+        }
+        @keyframes ticker {
+            from { transform: translateX(0); }
+            to   { transform: translateX(-50%); }
+        }
+        .ticker-item {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            font-family: var(--font-mono); font-size: 0.6875rem; font-weight: 600;
+            letter-spacing: 0.08em; color: rgba(203,213,225,0.5); flex-shrink: 0;
+        }
+        .ticker-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+        .td-green { background: var(--accent); box-shadow: 0 0 6px var(--accent); }
+        .td-amber { background: #F59E0B; box-shadow: 0 0 6px #F59E0B; }
+        .td-red   { background: #EF4444; box-shadow: 0 0 6px #EF4444; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .os-framing-inner { grid-template-columns: 1fr; }
+            .seg-grid { grid-template-columns: 1fr; }
+            .why-grid { grid-template-columns: 1fr; }
+            .cos-feature-grid { grid-template-columns: 1fr 1fr; }
+            .cos-role-strip { grid-template-columns: 1fr 1fr; }
+            .cos-proof { grid-template-columns: 1fr; }
+            .cos-pain-bar { grid-template-columns: 1fr 1fr; }
+            .consulting-frame { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 600px) {
+            .cos-feature-grid { grid-template-columns: 1fr; }
+            .cos-role-strip { grid-template-columns: 1fr; }
+            .cos-pain-bar { grid-template-columns: 1fr; }
+            .cos-metrics { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
 </head>
 <body>
+
     <!-- Navigation -->
     <nav id="navbar" class="navbar">
         <div class="container nav-container">
@@ -41,15 +490,14 @@
                 </svg>
                 <span>Impact Solutions Group</span>
             </a>
-            
+
             <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </button>
-            
+
             <ul class="nav-menu">
                 <li><a href="#platforms" class="nav-link">Platforms</a></li>
+                <li><a href="#classroomos" class="nav-link">ClassroomOS</a></li>
                 <li><a href="#services" class="nav-link">Services</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#contact" class="nav-link btn-primary">Partner With Us</a></li>
@@ -57,25 +505,27 @@
         </div>
     </nav>
 
-    <!-- Hero -->
+    <!-- ══ HERO ══════════════════════════════════════════════════════ -->
     <section id="home" class="hero">
         <div class="hero-background"></div>
         <div class="container hero-container">
             <div class="hero-content">
                 <div class="hero-badge">
-                    <span>Strategic Intelligence Infrastructure</span>
+                    <span>Operating Systems for Execution</span>
                 </div>
                 <h1 class="hero-title">
-                    Intelligence Systems for
-                    <span class="gradient-text">Organizations at Scale</span>
+                    We didn't build software.
+                    <span class="gradient-text">We built operating systems.</span>
                 </h1>
                 <p class="hero-subtitle">
-                    Impact Solutions Group builds decision infrastructure that surfaces operational reality without imposing evaluation. 
-                    <strong>ImpactOS</strong> for executive teams. <strong>ClassroomOS</strong> for instructional environments.
+                    Impact Solutions Group builds decision infrastructure that converts operational chaos into structured, executable action.
+                    <strong>ImpactOS</strong> for operators and executive teams.
+                    <strong>ClassroomOS</strong> for instructional environments.
+                    Guided by a human strategist who built what he uses.
                 </p>
                 <div class="hero-cta">
-                    <a href="#platforms" class="btn btn-primary btn-lg">Explore Platforms</a>
-                    <a href="#contact" class="btn btn-secondary btn-lg">Schedule Consultation</a>
+                    <a href="#classroomos" class="btn btn-primary btn-lg">See ClassroomOS</a>
+                    <a href="#contact" class="btn btn-secondary btn-lg">Book Strategy Call</a>
                 </div>
                 <div class="hero-stats">
                     <div class="stat-item">
@@ -84,7 +534,7 @@
                     </div>
                     <div class="stat-item">
                         <div class="stat-number" data-value="2000">2,000+</div>
-                        <div class="stat-label">Decisions Processed</div>
+                        <div class="stat-label">Students Served</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-number" data-value="20">20+</div>
@@ -96,30 +546,28 @@
                 <div class="dashboard-preview">
                     <div class="dashboard-header">
                         <div class="dashboard-dots">
-                            <span></span>
-                            <span></span>
-                            <span></span>
+                            <span></span><span></span><span></span>
                         </div>
-                        <div class="dashboard-title">Intelligence Infrastructure</div>
+                        <div class="dashboard-title">Execution Infrastructure</div>
                     </div>
                     <div class="dashboard-content">
                         <div class="chart-card">
-                            <div class="chart-title">Execution Benchmarks</div>
+                            <div class="chart-title">Operational Signal Index</div>
                             <div class="chart-bars">
-                                <div class="bar"><div class="bar-fill" style="height: 75%"></div></div>
-                                <div class="bar"><div class="bar-fill" style="height: 60%"></div></div>
-                                <div class="bar"><div class="bar-fill" style="height: 90%"></div></div>
-                                <div class="bar"><div class="bar-fill" style="height: 85%"></div></div>
+                                <div class="bar"><div class="bar-fill" style="height:75%"></div></div>
+                                <div class="bar"><div class="bar-fill" style="height:60%"></div></div>
+                                <div class="bar"><div class="bar-fill" style="height:90%"></div></div>
+                                <div class="bar"><div class="bar-fill" style="height:85%"></div></div>
                             </div>
                         </div>
                         <div class="metric-cards">
                             <div class="metric-card">
-                                <div class="metric-icon">✓</div>
-                                <div class="metric-value">Governed</div>
+                                <div class="metric-icon">⚡</div>
+                                <div class="metric-value">Actionable</div>
                             </div>
                             <div class="metric-card">
-                                <div class="metric-icon">⚖</div>
-                                <div class="metric-value">Auditable</div>
+                                <div class="metric-icon">🔒</div>
+                                <div class="metric-value">Governed</div>
                             </div>
                         </div>
                     </div>
@@ -128,42 +576,134 @@
         </div>
     </section>
 
-    <!-- Firm Positioning -->
-    <section class="positioning">
-        <div class="container">
-            <h2>Not Software. Strategic Infrastructure.</h2>
-            <p>
-                Every analysis follows codified methodologies. Decision artifacts include documented reasoning chains. 
-                Frameworks deploy under your governance—you control access, workflows, and institutional standards.
-            </p>
+    <!-- ══ OS FRAMING BAND ════════════════════════════════════════════ -->
+    <section class="os-framing">
+        <div class="container os-framing-inner">
+            <div>
+                <div class="mono-label">The Difference</div>
+                <div class="os-statement">
+                    Other platforms give you <em>tools.</em><br>
+                    This platform gives you<br>
+                    <em>structure + guidance + memory.</em>
+                </div>
+                <p style="color:var(--text-secondary); font-size:1rem; line-height:1.75; max-width:520px;">
+                    Most software stops at data collection. Our operating systems close the loop — from signal detection to bounded strategy to evidence logging — so execution actually improves across time and across personnel.
+                </p>
+            </div>
+            <div class="os-compare">
+                <div class="os-compare-row">
+                    <span class="os-compare-bad">Tools for planning</span>
+                    <span class="os-compare-arrow">→</span>
+                    <span class="os-compare-good">Systems for execution</span>
+                </div>
+                <div class="os-compare-row">
+                    <span class="os-compare-bad">Reports after the fact</span>
+                    <span class="os-compare-arrow">→</span>
+                    <span class="os-compare-good">Signals in real time</span>
+                </div>
+                <div class="os-compare-row">
+                    <span class="os-compare-bad">Generic frameworks</span>
+                    <span class="os-compare-arrow">→</span>
+                    <span class="os-compare-good">Bounded, role-aware guidance</span>
+                </div>
+                <div class="os-compare-row">
+                    <span class="os-compare-bad">Software vendor support</span>
+                    <span class="os-compare-arrow">→</span>
+                    <span class="os-compare-good">Human architect behind the system</span>
+                </div>
+                <div class="os-compare-row">
+                    <span class="os-compare-bad">Knowledge lost on turnover</span>
+                    <span class="os-compare-arrow">→</span>
+                    <span class="os-compare-good">Operational memory that persists</span>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Platforms -->
+    <!-- ══ LIVE SIGNAL TICKER ══════════════════════════════════════════ -->
+    <div class="signal-ticker">
+        <div class="ticker-track">
+            <span class="ticker-item"><span class="ticker-dot td-red"></span>SIGNAL — 67% below grade level in ELA</span>
+            <span class="ticker-item"><span class="ticker-dot td-amber"></span>STRATEGY GENERATED — Tier 2 intervention recommended</span>
+            <span class="ticker-item"><span class="ticker-dot td-green"></span>COACH BRIEF — Longitudinal pattern analysis delivered</span>
+            <span class="ticker-item"><span class="ticker-dot td-amber"></span>SUBSTITUTE ONBOARDED — Class context loaded in 30 seconds</span>
+            <span class="ticker-item"><span class="ticker-dot td-green"></span>EVIDENCE LOGGED — Engagement signal confirmed</span>
+            <span class="ticker-item"><span class="ticker-dot td-red"></span>ACADEMIC SIGNAL — 3+ grade levels below benchmark</span>
+            <span class="ticker-item"><span class="ticker-dot td-green"></span>QUICK WIN — Immediate pivot strategy ready</span>
+            <span class="ticker-item"><span class="ticker-dot td-amber"></span>IMPACTOS — Execution gap identified in Q3 pipeline</span>
+            <!-- Duplicate for seamless loop -->
+            <span class="ticker-item"><span class="ticker-dot td-red"></span>SIGNAL — 67% below grade level in ELA</span>
+            <span class="ticker-item"><span class="ticker-dot td-amber"></span>STRATEGY GENERATED — Tier 2 intervention recommended</span>
+            <span class="ticker-item"><span class="ticker-dot td-green"></span>COACH BRIEF — Longitudinal pattern analysis delivered</span>
+            <span class="ticker-item"><span class="ticker-dot td-amber"></span>SUBSTITUTE ONBOARDED — Class context loaded in 30 seconds</span>
+            <span class="ticker-item"><span class="ticker-dot td-green"></span>EVIDENCE LOGGED — Engagement signal confirmed</span>
+            <span class="ticker-item"><span class="ticker-dot td-red"></span>ACADEMIC SIGNAL — 3+ grade levels below benchmark</span>
+            <span class="ticker-item"><span class="ticker-dot td-green"></span>QUICK WIN — Immediate pivot strategy ready</span>
+            <span class="ticker-item"><span class="ticker-dot td-amber"></span>IMPACTOS — Execution gap identified in Q3 pipeline</span>
+        </div>
+    </div>
+
+    <!-- ══ WHO THIS IS FOR ════════════════════════════════════════════ -->
+    <section class="segmentation">
+        <div class="container">
+            <div class="mono-label">Who This Is For</div>
+            <h2>Three audiences.<br>One architecture.</h2>
+            <div class="seg-grid">
+                <div class="seg-card" data-aos="fade-up">
+                    <span class="seg-icon">🎓</span>
+                    <div class="seg-title">Educators</div>
+                    <div class="seg-subtitle">Teachers · Substitutes · Tutors · Coaches</div>
+                    <p class="seg-body">
+                        You have more data than ever and less time to use it. ClassroomOS closes the gap between your assessment reports and Monday morning action — giving every educator in the building the right strategy, in their language, for their role.
+                    </p>
+                    <div class="seg-os-tag">→ ClassroomOS</div>
+                </div>
+                <div class="seg-card" data-aos="fade-up" data-aos-delay="100">
+                    <span class="seg-icon">🏗️</span>
+                    <div class="seg-title">Operators &amp; Executives</div>
+                    <div class="seg-subtitle">Founders · Directors · Operations Leaders</div>
+                    <p class="seg-body">
+                        Your organization has more moving parts than any spreadsheet can track. ImpactOS surfaces execution gaps, health signals, and strategic priorities in real time — so leadership decisions are grounded in operational reality, not guesswork.
+                    </p>
+                    <div class="seg-os-tag">→ ImpactOS</div>
+                </div>
+                <div class="seg-card" data-aos="fade-up" data-aos-delay="200">
+                    <span class="seg-icon">🔧</span>
+                    <div class="seg-title">Consultants &amp; Networks</div>
+                    <div class="seg-subtitle">Consulting Firms · Charter Networks · Nonprofits</div>
+                    <p class="seg-body">
+                        You advise organizations but struggle to install consistent frameworks across engagements. White-label either platform under your brand, or engage Amir directly to architect and deploy systems your clients will actually use.
+                    </p>
+                    <div class="seg-os-tag">→ ImpactOS + ClassroomOS</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ PLATFORMS (UPDATED FRAMING) ═══════════════════════════════ -->
     <section id="platforms" class="platforms">
         <div class="container">
             <div class="section-header">
-                <h2>Intelligence Platforms</h2>
-                <p>
-                    Impact Solutions Group operates two strategic intelligence systems. Both share the same architectural 
-                    principles: surface reality, maintain fidelity, enable judgment.
-                </p>
+                <div class="mono-label" style="justify-content:center;"><span style="display:none"></span>Intelligence Platforms</div>
+                <h2>Two operating systems.<br>Same architectural principle.</h2>
+                <p>Surface operational reality. Maintain fidelity to evidence. Enable execution — not just planning.</p>
             </div>
 
             <div class="platforms-grid">
                 <!-- ImpactOS -->
                 <div class="platform-card" data-aos="fade-up">
-                    <div class="platform-badge">Executive Intelligence</div>
+                    <div class="platform-badge">Decision Infrastructure · Executive Teams</div>
                     <h3><span class="gradient-text">ImpactOS</span></h3>
+                    <div class="platform-failure">Prevents: Execution decay, decision fog, strategy loss</div>
                     <p class="platform-desc">
-                        Decision operating system for executive teams. Codified frameworks for strategic planning, 
-                        organizational health assessment, and execution measurement.
+                        Decision operating system for operators and executive teams. ImpactOS doesn't give you another dashboard — it gives you codified frameworks that convert organizational signals into executable decisions, with documented reasoning chains that persist across leadership transitions.
                     </p>
+                    <div class="platform-outcome-label">What it unlocks</div>
                     <ul class="platform-features">
-                        <li>Strategic Framework Engine</li>
-                        <li>Organizational Health Index</li>
-                        <li>Execution Capability System</li>
-                        <li>Department Design Module</li>
+                        <li>Strategic Framework Engine — structured decision scaffolding</li>
+                        <li>Organizational Health Index — real-time operational signals</li>
+                        <li>Execution Capability System — gap detection before failure</li>
+                        <li>Department Design Module — architecture, not just org charts</li>
                     </ul>
                     <div class="platform-cta">
                         <button onclick="openImpactOSDemo()" class="btn btn-primary">Request Demo</button>
@@ -173,21 +713,22 @@
 
                 <!-- ClassroomOS -->
                 <div class="platform-card" data-aos="fade-up" data-aos-delay="100">
-                    <div class="platform-badge">Instructional Intelligence</div>
+                    <div class="platform-badge">Instructional Intelligence · All Educator Roles</div>
                     <h3><span class="gradient-text">ClassroomOS</span></h3>
+                    <div class="platform-failure">Prevents: Instructional drop-off, sub disruption, coach blindness</div>
                     <p class="platform-desc">
-                        Intelligence platform for distributed instructional environments. Enables educators to document 
-                        strategy, log evidence, and maintain operational continuity across personnel transitions.
+                        Context-preserving operating system for distributed instructional environments. ClassroomOS translates assessment data into role-aware strategies in real time — giving teachers, substitutes, tutors, and coaches exactly what they need, in the language they need it, the moment they need it.
                     </p>
+                    <div class="platform-outcome-label">What it unlocks</div>
                     <ul class="platform-features">
-                        <li>Strategy Snapshot Records</li>
-                        <li>Evidence Tracking Logs</li>
-                        <li>Role-Based Permissions</li>
-                        <li>Transition Continuity</li>
+                        <li>Signal Detection Engine — assessment data → action signals</li>
+                        <li>Role-Aware Strategy Generation — tuned for your role today</li>
+                        <li>Snapshot Library — instructional continuity across personnel</li>
+                        <li>Coach Dashboard — longitudinal pattern visibility</li>
                     </ul>
                     <div class="platform-cta">
                         <button onclick="openClassroomOSDemo()" class="btn btn-primary">Request Demo</button>
-                        <a href="https://classroomos.org/login" target="_blank" class="btn btn-secondary">Access Platform</a>
+                        <a href="https://classroom-os.pages.dev" target="_blank" class="btn btn-secondary">Access Platform</a>
                     </div>
                 </div>
             </div>
@@ -195,43 +736,269 @@
             <div class="white-label-section">
                 <h3>White-Label Deployment</h3>
                 <p>
-                    Deploy ImpactOS or ClassroomOS under your organization's brand. Standardize frameworks across 
-                    consulting engagements, charter networks, or internal strategy teams.
+                    Deploy ImpactOS or ClassroomOS under your organization's brand. Your frameworks, your governance,
+                    your client relationships — powered by infrastructure that actually works.
                 </p>
                 <button onclick="openWhiteLabelModal(event)" class="btn btn-secondary">Explore Partnership</button>
             </div>
         </div>
     </section>
 
-    <!-- Services -->
-    <section id="services" class="services">
+    <!-- ══ CLASSROOMOS DEEP SECTION ═══════════════════════════════════ -->
+    <section id="classroomos" class="classroomos-section">
         <div class="container">
-            <h2>Consulting Services</h2>
-            <div class="services-grid">
-                <div class="service-card" data-aos="fade-up">
-                    <h4>Analytics Infrastructure</h4>
-                    <p>Enterprise analytics systems with automated reporting, governance frameworks, and decision support infrastructure.</p>
+            <div class="cos-header">
+                <div class="mono-label">ClassroomOS Deep Dive</div>
+                <h2 class="cos-headline">
+                    Your students can't wait<br>
+                    for the system to catch up.<br>
+                    <span class="gradient-text">Neither can you.</span>
+                </h2>
+                <p class="cos-subhead">
+                    ClassroomOS is a role-aware instructional intelligence platform that transforms raw classroom signals and
+                    assessment data into bounded, evidence-grounded strategies — delivered to the right person, in the right language,
+                    at the right moment. <strong>No guesswork. No generic frameworks. No wasted prep time.</strong>
+                </p>
+            </div>
+
+            <!-- PAIN BAR -->
+            <div class="cos-pain-bar" data-aos="fade-up">
+                <div class="cos-pain-stat">
+                    <div class="cos-pain-num">68%</div>
+                    <div class="cos-pain-label">of U.S. 4th graders read below proficiency</div>
+                    <div class="cos-pain-source">NAEP Nation's Report Card, 2024</div>
                 </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
-                    <h4>Data Governance</h4>
-                    <p>Institutional data standards, compliance protocols, and quality frameworks for distributed operations.</p>
+                <div class="cos-pain-stat">
+                    <div class="cos-pain-num">3–5 hrs</div>
+                    <div class="cos-pain-label">teachers lose weekly to administrative planning tasks</div>
+                    <div class="cos-pain-source">RAND Teacher Survey, 2023</div>
                 </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <h4>Program Evaluation</h4>
-                    <p>Rigorous evaluation frameworks demonstrating ROI and institutional effectiveness for funder scrutiny.</p>
+                <div class="cos-pain-stat">
+                    <div class="cos-pain-num">42%</div>
+                    <div class="cos-pain-label">of substitutes report having no instructional context</div>
+                    <div class="cos-pain-source">National Education Association</div>
                 </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
-                    <h4>Process Engineering</h4>
-                    <p>Workflow optimization and system integration for complex organizations managing distributed operations.</p>
+                <div class="cos-pain-stat">
+                    <div class="cos-pain-num">$15B+</div>
+                    <div class="cos-pain-label">spent annually on EdTech that teachers don't trust</div>
+                    <div class="cos-pain-source">HolonIQ Global EdTech Report</div>
+                </div>
+            </div>
+
+            <!-- FEATURE GRID -->
+            <div class="mono-label" style="margin-bottom:var(--spacing-lg);">Six Core Capabilities</div>
+            <div class="cos-feature-grid">
+                <div class="cos-feat violet" data-aos="fade-up">
+                    <div class="cos-feat-num">01</div>
+                    <span class="cos-feat-icon">📡</span>
+                    <div class="cos-feat-title">Signal Detection Engine</div>
+                    <p class="cos-feat-body">Automatically computes instructional signals from uploaded assessment data — iReady, LinkIt, NWEA, district CSVs. Critical, high, moderate, and low severity tiers surface in seconds, not weeks.</p>
+                    <span class="cos-feat-tag">Real-time · Evidence-Grounded</span>
+                </div>
+                <div class="cos-feat amber" data-aos="fade-up" data-aos-delay="80">
+                    <div class="cos-feat-num">02</div>
+                    <span class="cos-feat-icon">⚡</span>
+                    <div class="cos-feat-title">Strategy Engine + Quick Win</div>
+                    <p class="cos-feat-body">Generates 3 bounded, playbook-backed strategy recommendations from live signals. The Quick Win feature delivers an immediate, actionable pivot in under 30 seconds — no prep required.</p>
+                    <span class="cos-feat-tag">AI-Enhanced · Playbook-Bounded</span>
+                </div>
+                <div class="cos-feat green" data-aos="fade-up" data-aos-delay="160">
+                    <div class="cos-feat-num">03</div>
+                    <span class="cos-feat-icon">🎭</span>
+                    <div class="cos-feat-title">Role-Aware Intelligence</div>
+                    <p class="cos-feat-body">The platform speaks differently to a teacher vs. a substitute vs. a tutor vs. a coach. Every recommendation is reframed for the person reading it — their context, authority level, and time horizon.</p>
+                    <span class="cos-feat-tag">Adaptive · Context-Sensitive</span>
+                </div>
+                <div class="cos-feat teal" data-aos="fade-up" data-aos-delay="240">
+                    <div class="cos-feat-num">04</div>
+                    <span class="cos-feat-icon">📸</span>
+                    <div class="cos-feat-title">Snapshot Library + Continuity</div>
+                    <p class="cos-feat-body">Educators create instructional snapshots preserving class state, student signals, and handoff intent. Substitutes, tutors, and returning teachers pick up exactly where the classroom left off.</p>
+                    <span class="cos-feat-tag">Cross-Device · Persistent</span>
+                </div>
+                <div class="cos-feat indigo" data-aos="fade-up" data-aos-delay="320">
+                    <div class="cos-feat-num">05</div>
+                    <span class="cos-feat-icon">👁️</span>
+                    <div class="cos-feat-title">Coach Dashboard + Longitudinal View</div>
+                    <p class="cos-feat-body">Coaches see longitudinal strategy patterns, evidence logs, and support move recommendations across any educator in the system — pattern analysis, not performance evaluation.</p>
+                    <span class="cos-feat-tag">Longitudinal · Pattern-Analysis</span>
+                </div>
+                <div class="cos-feat red" data-aos="fade-up" data-aos-delay="400">
+                    <div class="cos-feat-num">06</div>
+                    <span class="cos-feat-icon">📬</span>
+                    <div class="cos-feat-title">Coach → Educator Messaging</div>
+                    <p class="cos-feat-body">Coaches push targeted strategy guidance directly to educator inboxes — attached to specific snapshots and signal data. Closed-loop instructional support without leaving the platform.</p>
+                    <span class="cos-feat-tag">Closed-Loop · In-Platform</span>
+                </div>
+            </div>
+
+            <!-- ROLE STRIP -->
+            <div class="mono-label" style="margin-bottom:var(--spacing-lg);">Every Role. One Platform.</div>
+            <div class="cos-role-strip" data-aos="fade-up">
+                <div class="cos-role">
+                    <span class="cos-role-icon">🍎</span>
+                    <div class="cos-role-name">Classroom Teacher</div>
+                    <p class="cos-role-gets">Full strategic depth. Evidence-backed recommendations. Assessment signals surfaced before they become crises. Long-term instructional trajectory built in.</p>
+                </div>
+                <div class="cos-role">
+                    <span class="cos-role-icon">🔄</span>
+                    <div class="cos-role-name">Substitute Teacher</div>
+                    <p class="cos-role-gets">Plain-language, execution-focused guidance. "Here's what to do today" — not a philosophy lecture. Continuity protected automatically. Zero assumptions about context.</p>
+                </div>
+                <div class="cos-role">
+                    <span class="cos-role-icon">🎯</span>
+                    <div class="cos-role-name">Intervention Tutor</div>
+                    <p class="cos-role-gets">Skill-targeted reinforcement aligned to what the classroom teacher is already doing. Students get coherence, not conflicting approaches between sessions.</p>
+                </div>
+                <div class="cos-role">
+                    <span class="cos-role-icon">👁️</span>
+                    <div class="cos-role-name">Instructional Coach</div>
+                    <p class="cos-role-gets">Longitudinal pattern visibility across any educator in the system. Support moves, not evaluations. Evidence-based coaching that lands in inboxes — not just observation notes.</p>
+                </div>
+            </div>
+
+            <!-- PROOF + METRICS -->
+            <div class="cos-proof" data-aos="fade-up">
+                <div>
+                    <div class="mono-label">Why It Works</div>
+                    <h3 style="margin-bottom:var(--spacing-md);">Bounded by design.<br>Never invented.</h3>
+                    <p class="cos-proof-text">ClassroomOS never fabricates strategies. Every recommendation traces back to pre-approved playbooks, real assessment signals, or logged evidence from the classroom itself. Educators can trust what they're given — because they can see exactly where it came from.</p>
+                    <div class="cos-outcomes">
+                        <div class="cos-outcome-item">
+                            <div class="cos-outcome-check">✓</div>
+                            <div class="cos-outcome-text"><strong>No AI hallucination risk.</strong> All recommendations bounded by curated strategy playbooks. Advisory only, always.</div>
+                        </div>
+                        <div class="cos-outcome-item">
+                            <div class="cos-outcome-check">✓</div>
+                            <div class="cos-outcome-text"><strong>Assessment platform agnostic.</strong> Ingests iReady, LinkIt, NWEA, MAP, and any standards-mapped CSV with automatic format detection.</div>
+                        </div>
+                        <div class="cos-outcome-item">
+                            <div class="cos-outcome-check">✓</div>
+                            <div class="cos-outcome-text"><strong>Cross-device, cross-session persistence.</strong> Snapshots, signals, and strategy history survive across devices and school days.</div>
+                        </div>
+                        <div class="cos-outcome-item">
+                            <div class="cos-outcome-check">✓</div>
+                            <div class="cos-outcome-text"><strong>Governance-first coaching.</strong> Coach dashboard follows strict language governance — it supports educators, it never evaluates them.</div>
+                        </div>
+                        <div class="cos-outcome-item">
+                            <div class="cos-outcome-check">✓</div>
+                            <div class="cos-outcome-text"><strong>Instant onboarding, any role.</strong> Role detection at login. Language, depth, and recommendations recalibrate immediately. Zero training required.</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="cos-metrics">
+                        <div class="cos-metric">
+                            <div class="cos-metric-num green">30s</div>
+                            <div class="cos-metric-label">From login to actionable strategy — any role</div>
+                        </div>
+                        <div class="cos-metric">
+                            <div class="cos-metric-num violet">4</div>
+                            <div class="cos-metric-label">Educator roles served from a single platform</div>
+                        </div>
+                        <div class="cos-metric">
+                            <div class="cos-metric-num amber">100%</div>
+                            <div class="cos-metric-label">Recommendations bounded to pre-approved playbooks</div>
+                        </div>
+                        <div class="cos-metric">
+                            <div class="cos-metric-num white">0</div>
+                            <div class="cos-metric-label">Days of training required to get started</div>
+                        </div>
+                    </div>
+                    <div class="cos-platforms-box">
+                        <div class="cos-platforms-label">Assessment Platforms Supported</div>
+                        <div class="cos-platform-tags">
+                            <span class="cos-ptag">iReady</span>
+                            <span class="cos-ptag">LinkIt</span>
+                            <span class="cos-ptag">NWEA MAP</span>
+                            <span class="cos-ptag">NJSLA</span>
+                            <span class="cos-ptag">DIBELS</span>
+                            <span class="cos-ptag">Aimsweb</span>
+                            <span class="cos-ptag highlight">+ Any CSV</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ClassroomOS CTA -->
+            <div class="cos-cta" data-aos="fade-up">
+                <h3>Ready when your classroom is.</h3>
+                <p>ClassroomOS is live and deployed. Request a walkthrough built around your district's assessment platforms, grade levels, and instructional model.</p>
+                <div class="cos-cta-btns">
+                    <button onclick="openClassroomOSDemo()" class="btn btn-primary btn-lg">📅 Request a Demo</button>
+                    <a href="https://classroom-os.pages.dev" target="_blank" class="btn btn-secondary btn-lg">🎓 See It Live</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Proof Point -->
+    <!-- ══ SERVICES (REFRAMED AS FORCE MULTIPLIER) ════════════════════ -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="mono-label">Consulting Services</div>
+            <h2>System Installation.<br>Not Just Advice.</h2>
+            <p style="max-width:680px; font-size:1.0625rem; color:var(--text-secondary); margin-bottom:var(--spacing-xl); line-height:1.75;">
+                Software alone does not fix execution failure. The consulting layer is where systems get installed correctly —
+                architectured to your organization's actual operational model, not a generic playbook.
+                <strong style="color:var(--text-primary);">If you want tools, use any platform. If you want outcomes, use systems.</strong>
+            </p>
+            <div class="services-grid">
+                <div class="service-card" data-aos="fade-up">
+                    <h4>Analytics Infrastructure</h4>
+                    <p>Enterprise analytics systems with automated reporting pipelines, governance frameworks, and decision support infrastructure that actually serves leadership — not just compliance.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                    <h4>Data Governance Architecture</h4>
+                    <p>Institutional data standards, compliance protocols, and quality frameworks built for distributed operations. Not a policy document — an operational system your teams can execute against.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
+                    <h4>Program Evaluation</h4>
+                    <p>Rigorous evaluation frameworks that demonstrate ROI, surface operational reality, and hold up to funder scrutiny — built on the same infrastructure I designed for 2,000+ student programs.</p>
+                </div>
+                <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                    <h4>Process Engineering</h4>
+                    <p>Workflow optimization and system integration for complex organizations managing distributed operations. I don't redesign org charts — I redesign the operational logic that sits beneath them.</p>
+                </div>
+            </div>
+
+            <!-- Consulting force-multiplier frame -->
+            <div class="consulting-frame" data-aos="fade-up">
+                <div>
+                    <div class="consulting-manifesto">
+                        "I don't advise organizations.<br>I architect their operating models<br>and help them install the systems."
+                    </div>
+                    <p style="color:var(--text-secondary); font-size:0.9375rem; line-height:1.75; margin:0;">
+                        Every engagement is grounded in the same principle: operational leverage lives in the system design, not the strategy document.
+                        The consulting layer accelerates adoption and guarantees the infrastructure actually holds.
+                    </p>
+                </div>
+                <div class="consulting-list">
+                    <div class="consulting-item">
+                        <span class="consulting-item-icon">🔩</span>
+                        <p class="consulting-item-text"><strong>Systems over slide decks.</strong> Every engagement produces deployable infrastructure, not recommendations that live in a PDF.</p>
+                    </div>
+                    <div class="consulting-item">
+                        <span class="consulting-item-icon">🧠</span>
+                        <p class="consulting-item-text"><strong>I build what I use.</strong> ImpactOS and ClassroomOS exist because I ran into the same operational chaos your organization is in.</p>
+                    </div>
+                    <div class="consulting-item">
+                        <span class="consulting-item-icon">📐</span>
+                        <p class="consulting-item-text"><strong>Architecture first.</strong> I stay close to the system design because that's where operational leverage lives — not in the kickoff meeting.</p>
+                    </div>
+                    <div class="consulting-item">
+                        <span class="consulting-item-icon">⏱️</span>
+                        <p class="consulting-item-text"><strong>Execution acceleration.</strong> The consulting layer cuts the gap between system deployment and measurable operational improvement.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ PROOF ════════════════════════════════════════════════════════ -->
     <section class="proof">
         <div class="container">
-            <h3>Program Evaluation and Impact Contributions</h3>
+            <div class="mono-label">Track Record</div>
+            <h3>Built under real conditions.<br>Measured against real outcomes.</h3>
             <div class="proof-stats">
                 <div class="proof-stat">
                     <div class="proof-value">2,000+</div>
@@ -242,7 +1009,7 @@
                     <div class="proof-label">Program Sites</div>
                 </div>
                 <div class="proof-stat">
-                    <div class="proof-value">$1M</div>
+                    <div class="proof-value">$1M+</div>
                     <div class="proof-label">Funding Secured</div>
                 </div>
                 <div class="proof-stat">
@@ -253,7 +1020,64 @@
         </div>
     </section>
 
-    <!-- Founder -->
+    <!-- ══ WHY THIS EXISTS ═══════════════════════════════════════════════ -->
+    <section class="why-exists">
+        <div class="container">
+            <div class="why-grid">
+                <div>
+                    <div class="mono-label">Why This Exists</div>
+                    <div class="why-quote">
+                        "I didn't build a product.<br>
+                        I built the system I needed<br>
+                        when I was <em>inside the chaos.</em>"
+                    </div>
+                    <p class="why-body">
+                        Before Impact Solutions Group, I built evaluation infrastructure for New Jersey Tutoring Corps — 2,000+ students, 20+ sites, a reporting burden that was crushing the team. The tools existed. The <strong>systems didn't.</strong>
+                    </p>
+                    <p class="why-body">
+                        ImpactOS emerged from the gap between what executives needed to see and what the data infrastructure could actually surface. ClassroomOS emerged from watching educators walk into classrooms with no operational context, no strategy continuity, and no time to build either.
+                    </p>
+                    <p class="why-body">
+                        I sit at the intersection of systems design, data architecture, and real-world operational implementation. <strong>That intersection is where this platform lives.</strong>
+                    </p>
+                </div>
+                <div>
+                    <div class="differentiator-list">
+                        <div class="diff-item">
+                            <span class="diff-icon">🔗</span>
+                            <div>
+                                <div class="diff-title">Systems Design + Data Architecture</div>
+                                <p class="diff-body">I build infrastructure with temporal consistency, role-based governance, and evidence traceability — not dashboards that look good in demos and break in production.</p>
+                            </div>
+                        </div>
+                        <div class="diff-item">
+                            <span class="diff-icon">🏗️</span>
+                            <div>
+                                <div class="diff-title">Real-World Implementation</div>
+                                <p class="diff-body">Every system I deploy was stress-tested against real operational conditions — not simulated environments. I know what breaks when personnel turns over.</p>
+                            </div>
+                        </div>
+                        <div class="diff-item">
+                            <span class="diff-icon">🧭</span>
+                            <div>
+                                <div class="diff-title">Human Strategist Behind the Platform</div>
+                                <p class="diff-body">You're not buying a SaaS license. You're engaging an architect who will stay close to your system design because that's where operational leverage lives.</p>
+                            </div>
+                        </div>
+                        <div class="diff-item">
+                            <span class="diff-icon">📐</span>
+                            <div>
+                                <div class="diff-title">Governance Without Evaluation</div>
+                                <p class="diff-body">Every system surfaces operational reality without imposing judgment. Frameworks deploy under your governance. Access, workflows, and standards stay yours.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ ABOUT ══════════════════════════════════════════════════════ -->
     <section id="about" class="about">
         <div class="container about-container">
             <div class="about-image" data-aos="fade-right">
@@ -261,19 +1085,25 @@
                 <div class="credentials">
                     <span>Systems Architect</span>
                     <span>Intelligence Infrastructure</span>
+                    <span>Instructional Technology</span>
                 </div>
             </div>
             <div class="about-content" data-aos="fade-left">
+                <div class="mono-label">The Architect</div>
                 <h2>Amir Wallace</h2>
-                <p class="about-title">Founder & Architect, Impact Solutions Group</p>
+                <p class="about-title">Founder &amp; Architect, Impact Solutions Group</p>
                 <p>
-                    I design intelligence systems for organizations that need to see their operations clearly. 
-                    My work focuses on structural integrity—ensuring data has temporal consistency, role-based 
-                    access follows governance logic, and strategic documentation persists across personnel transitions.
+                    I design operating systems for organizations that need to see their operations clearly and execute with discipline.
+                    My work focuses on structural integrity — ensuring data has temporal consistency, role-based access follows governance logic,
+                    and strategic documentation persists across personnel transitions.
                 </p>
                 <p>
-                    Before founding Impact Solutions Group, I built evaluation infrastructure for New Jersey Tutoring Corps, 
-                    serving 2,000+ students across 20+ sites. ImpactOS and ClassroomOS emerged from that work.
+                    Before founding Impact Solutions Group, I built evaluation infrastructure for New Jersey Tutoring Corps,
+                    serving 2,000+ students across 20+ sites. ImpactOS and ClassroomOS emerged from that work — not as side projects,
+                    but as solutions to operational failures I experienced firsthand.
+                </p>
+                <p>
+                    I build what I use. That's the only way to build systems that hold.
                 </p>
                 <div class="about-cta">
                     <a href="https://www.linkedin.com/in/amir-wallace-5b2164394/" target="_blank" class="btn btn-primary">
@@ -285,12 +1115,13 @@
         </div>
     </section>
 
-    <!-- Contact -->
+    <!-- ══ CONTACT ════════════════════════════════════════════════════ -->
     <section id="contact" class="contact">
         <div class="container contact-container">
             <div class="contact-info">
+                <div class="mono-label">Get Started</div>
                 <h2>Partner With Us</h2>
-                <p>Deploy strategic intelligence infrastructure under your brand or engage consulting services.</p>
+                <p>Deploy strategic intelligence infrastructure under your brand, access either platform, or engage directly for system architecture and consulting.</p>
                 <div class="contact-methods">
                     <a href="mailto:impactsolutionsgroup25@gmail.com" class="contact-method">
                         <span class="method-label">Email</span>
@@ -322,12 +1153,13 @@
                             <option value="">Select</option>
                             <option value="impactos">ImpactOS</option>
                             <option value="classroomos">ClassroomOS</option>
-                            <option value="white-label">White-Label</option>
-                            <option value="consulting">Consulting</option>
+                            <option value="white-label">White-Label Deployment</option>
+                            <option value="consulting">System Architecture / Consulting</option>
+                            <option value="strategy-call">Book Strategy Call</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="message">Details</label>
+                        <label for="message">Tell me about your operational challenge</label>
                         <textarea id="message" name="message" rows="4" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary btn-lg btn-block">
@@ -340,38 +1172,39 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ══ FOOTER ══════════════════════════════════════════════════════ -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
                     <h3>Impact Solutions Group</h3>
-                    <p>Strategic intelligence infrastructure for organizations at scale</p>
+                    <p>Operating systems for execution. Not tools for planning.</p>
                 </div>
                 <div class="footer-links">
                     <div class="footer-column">
                         <h4>Platforms</h4>
                         <ul>
                             <li><a href="#platforms">ImpactOS</a></li>
-                            <li><a href="#platforms">ClassroomOS</a></li>
+                            <li><a href="#classroomos">ClassroomOS</a></li>
                         </ul>
                     </div>
                     <div class="footer-column">
                         <h4>Company</h4>
                         <ul>
                             <li><a href="#about">About</a></li>
+                            <li><a href="#services">Services</a></li>
                             <li><a href="#contact">Contact</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Impact Solutions Group LLC</p>
+                <p>&copy; 2026 Impact Solutions Group LLC &nbsp;·&nbsp; Operating Systems for Execution</p>
             </div>
         </div>
     </footer>
 
-    <!-- Modals -->
+    <!-- ══ MODALS (UNCHANGED STRUCTURE) ══════════════════════════════ -->
     <div id="impactosModal" class="modal">
         <div class="modal-content">
             <button class="modal-close" onclick="closeImpactOSDemo()">&times;</button>
@@ -382,11 +1215,12 @@
                 <input type="text" name="organization" placeholder="Organization" required>
                 <select name="role" required>
                     <option value="">Your Role</option>
-                    <option value="executive">Executive</option>
-                    <option value="director">Director</option>
-                    <option value="manager">Manager</option>
+                    <option value="executive">Executive / Founder</option>
+                    <option value="director">Director / VP</option>
+                    <option value="manager">Operations Manager</option>
+                    <option value="consultant">Consultant</option>
                 </select>
-                <textarea name="needs" rows="3" placeholder="Decision intelligence needs"></textarea>
+                <textarea name="needs" rows="3" placeholder="Describe your operational challenge"></textarea>
                 <button type="submit" class="btn btn-primary btn-block">Request Demo</button>
                 <div class="form-message" id="impactosFormMessage"></div>
             </form>
@@ -400,14 +1234,16 @@
             <form id="classroomosForm">
                 <input type="text" name="name" placeholder="Name" required>
                 <input type="email" name="email" placeholder="Email" required>
-                <input type="text" name="organization" placeholder="School/Organization" required>
+                <input type="text" name="organization" placeholder="School / District / Organization" required>
                 <select name="role" required>
                     <option value="">Your Role</option>
-                    <option value="administrator">Administrator</option>
+                    <option value="administrator">Administrator / Principal</option>
                     <option value="coach">Instructional Coach</option>
-                    <option value="teacher">Teacher</option>
+                    <option value="teacher">Classroom Teacher</option>
+                    <option value="tutor">Tutor / Interventionist</option>
+                    <option value="director">District Director</option>
                 </select>
-                <textarea name="needs" rows="3" placeholder="Instructional intelligence needs"></textarea>
+                <textarea name="needs" rows="3" placeholder="Describe your instructional continuity challenge"></textarea>
                 <button type="submit" class="btn btn-primary btn-block">Request Demo</button>
                 <div class="form-message" id="classroomosFormMessage"></div>
             </form>
@@ -418,26 +1254,26 @@
         <div class="modal-content">
             <button class="modal-close" onclick="closeWhiteLabelModal()">&times;</button>
             <h2>White-Label Deployment</h2>
-            <p>Deploy ImpactOS or ClassroomOS under your organization's brand for consulting firms, education networks, or internal strategy teams.</p>
+            <p>Deploy ImpactOS or ClassroomOS under your organization's brand. Your frameworks, your client relationships, your governance — powered by infrastructure that actually works at scale.</p>
             <div class="wl-grid">
                 <div class="wl-card">
                     <h4>Consulting Firms</h4>
-                    <p>Deliver consistent frameworks across client engagements</p>
+                    <p>Deliver consistent, codified frameworks across every client engagement without rebuilding from scratch.</p>
                 </div>
                 <div class="wl-card">
                     <h4>Education Networks</h4>
-                    <p>Standardize intelligence across charter portfolios</p>
+                    <p>Standardize instructional intelligence across charter portfolios, turnaround schools, or regional programs.</p>
                 </div>
                 <div class="wl-card">
                     <h4>Nonprofits</h4>
-                    <p>Unified decision logic across programs and sites</p>
+                    <p>Unified decision logic across programs and sites. One operating model. Real operational leverage.</p>
                 </div>
                 <div class="wl-card">
                     <h4>Strategy Teams</h4>
-                    <p>Enterprise-grade infrastructure for internal ops</p>
+                    <p>Enterprise-grade decision infrastructure for internal operations teams that need more than a spreadsheet.</p>
                 </div>
             </div>
-            <a href="#contact" onclick="closeWhiteLabelModal()" class="btn btn-primary btn-lg">Schedule Consultation</a>
+            <a href="#contact" onclick="closeWhiteLabelModal()" class="btn btn-primary btn-block">Discuss Partnership</a>
         </div>
     </div>
 
